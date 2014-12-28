@@ -8,7 +8,13 @@ import java.util.HashMap;
 public class CSpritesheetManager {
     private HashMap<Integer, CSpritesheet> collection;
 
-    {
+    public static CSpritesheetManager Instance = new CSpritesheetManager();
+
+    public static CSpritesheetManager getInstance() {
+        return Instance;
+    }
+
+    private CSpritesheetManager(){
         collection = new HashMap<>();
     }
 

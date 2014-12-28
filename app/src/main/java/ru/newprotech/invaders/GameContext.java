@@ -24,4 +24,8 @@ public class GameContext {
     public Resources getResources(){
         return this.cont.getResources();
     }
+
+    public Object getSystemService(String name) {
+        return cont.getSystemService(name);
+    }
 }

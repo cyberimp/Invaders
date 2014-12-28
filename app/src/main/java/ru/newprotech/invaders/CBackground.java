@@ -13,10 +13,16 @@ public class CBackground implements IThinker {
     private float deltaY;
     private float screenY = 0;
 
-    public CBackground(int res,int x, int y){
+    private static CBackground Instance = new CBackground();
+
+    public static CBackground getInstance() {
+        return Instance;
+    }
+    
+    public void LoadBackground(int res,int x, int y){
         BitmapFactory.Options options = new BitmapFactory.Options();
-        options.outHeight = x;
-        options.outWidth = y;
+        options.outHeight = y;
+        options.outWidth = x;
         GameContext context = GameContext.getInstance();
         image = BitmapFactory.decodeResource(context.getResources(),res,options);
     }
