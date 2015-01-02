@@ -21,10 +21,9 @@ public class CBackground implements IThinker {
     
     public void LoadBackground(int res,int x, int y){
         BitmapFactory.Options options = new BitmapFactory.Options();
-        options.outHeight = y;
-        options.outWidth = x;
         GameContext context = GameContext.getInstance();
-        image = BitmapFactory.decodeResource(context.getResources(),res,options);
+        Bitmap back = BitmapFactory.decodeResource(context.getResources(),res,options);
+        image = Bitmap.createScaledBitmap(back, x, y, true);
     }
 
     @Override

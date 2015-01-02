@@ -14,5 +14,5 @@ public interface GameState extends IThinker{
     static int STATE_GAMEOVER = 3;
 
 
-    public void TouchHandle(MotionEvent event);
+    public boolean TouchHandle(MotionEvent event);
 }

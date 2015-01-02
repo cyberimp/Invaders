@@ -33,6 +33,22 @@ public class CSprite implements IThinker {
         this.vy = vy;
     }
 
+    public float getX() {
+        return x;
+    }
+
+    public float getY() {
+        return y;
+    }
+
+    public float getVx() {
+        return vx;
+    }
+
+    public float getVy() {
+        return vy;
+    }
+
     public void setAnimation( int delay, int start, int end){
         animDelay = delay;
         startFrame = start;
@@ -63,5 +79,10 @@ public class CSprite implements IThinker {
             }
         }
         return 0;
+    }
+
+    public void stop() {
+        vx=0;
+        vy=0;
     }
 }

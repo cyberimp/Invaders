@@ -10,14 +10,27 @@ import android.view.MotionEvent;
  */
 public class MainState implements GameState {
     @Override
-    public void TouchHandle(MotionEvent event) {
+    public boolean TouchHandle(MotionEvent event) {
+        boolean result = false;
         CHero hero = CHero.getInstance();
         CController controller = CController.getInstance();
         switch (event.getAction()){
             case MotionEvent.ACTION_DOWN:
-                if ((event.getX()-hero.getX())<5)
-                    controller.StartMove(new PointF(event.getX(),event.getX()));
+                if (    Math.abs(event.getX()-hero.getX())<100 &&
+                        Math.abs(event.getY()-hero.getY())<100) {
+                    controller.StartMove(new PointF(event.getX(), event.getY()));
+                    result = true;
+                }
+                break;
+            case MotionEvent.ACTION_MOVE:
+                controller.StartMove(new PointF(event.getX(), event.getY()));
+                result = true;
+                break;
+            case MotionEvent.ACTION_UP:
+                result=true;
+                controller.StopMove();
         }
+        return result;
     }
 
     @Override
