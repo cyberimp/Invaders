@@ -15,7 +15,7 @@ import android.view.WindowManager;
  * Created by 6003 on 27.12.2014.
  */
 public class GameView extends View {
-    GameState state;
+    private GameState state;
 //    CBackground back;
 //    CSpritesheetManager spritesheetManager;
 //    CSprite warship;

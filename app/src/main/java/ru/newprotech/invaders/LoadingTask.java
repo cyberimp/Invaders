@@ -8,7 +8,7 @@ import android.view.WindowManager;
 /**
  * Created by kinzoxbeato on 28.12.2014.
  */
-public class LoadingTask extends AsyncTask<Float,Integer,Void> {
+class LoadingTask extends AsyncTask<Float,Integer,Void> {
     @Override
     protected Void doInBackground(Float... params) {
 //        back = new CBackground(R.drawable.nebula,display.getWidth(),display.getHeight());
@@ -22,8 +22,9 @@ public class LoadingTask extends AsyncTask<Float,Integer,Void> {
 
         CHero hero = CHero.getInstance();
         CSpritesheetManager ssManager = CSpritesheetManager.getInstance();
-        CSpritesheet sheet = ssManager.loadSheet(R.drawable.warship, 32, 32);
-        CSprite warship = new CSprite(sheet);
+        SpriteManager spriteManager = SpriteManager.getInstance();
+        ssManager.loadSheet(R.drawable.warship, 32, 32);
+        CSprite warship = spriteManager.createSprite(R.drawable.warship,160,450);
         warship.setAnimation(100,0,3);
         hero.setSprite(warship);
         params[0] = 100.f;

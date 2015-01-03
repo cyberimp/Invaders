@@ -16,19 +16,32 @@ public class MainState implements GameState {
         CController controller = CController.getInstance();
         switch (event.getAction()){
             case MotionEvent.ACTION_DOWN:
-                if (    Math.abs(event.getX()-hero.getX())<100 &&
-                        Math.abs(event.getY()-hero.getY())<100) {
+                if (    Math.abs(event.getX()-hero.getX())<50 &&
+                        Math.abs(event.getY()-hero.getY())<50) {
+                    controller.setPointer(0,CController.POINTER_MOVE);
                     controller.StartMove(new PointF(event.getX(), event.getY()));
+                    result = true;
+                }
+                else{
+                    controller.setPointer(0,CController.POINTER_SHOOT);
+                    controller.StartShoot(new PointF(event.getX(), event.getY()));
                     result = true;
                 }
                 break;
             case MotionEvent.ACTION_MOVE:
-                controller.StartMove(new PointF(event.getX(), event.getY()));
+                if (controller.getPointer(0)==CController.POINTER_MOVE)
+                    controller.StartMove(new PointF(event.getX(), event.getY()));
+                else
+                    controller.StartShoot(new PointF(event.getX(), event.getY()));
                 result = true;
                 break;
             case MotionEvent.ACTION_UP:
                 result=true;
-                controller.StopMove();
+
+                if (controller.getPointer(0)==CController.POINTER_MOVE)
+                    controller.StopMove();
+                else
+                    controller.StopShoot();
         }
         return result;
     }
@@ -36,18 +49,22 @@ public class MainState implements GameState {
     @Override
     public void Draw(Canvas canvas) {
         CBackground back = CBackground.getInstance();
-        CHero hero = CHero.getInstance();
+        SpriteManager spriteManager = SpriteManager.getInstance();
+//        CHero hero = CHero.getInstance();
         back.Draw(canvas);
-        hero.Draw(canvas);
+        spriteManager.Draw(canvas);
+//        hero.Draw(canvas);
 
     }
 
     @Override
     public int Think(long delta) {
         CBackground back = CBackground.getInstance();
+        SpriteManager spriteManager = SpriteManager.getInstance();
         CHero hero = CHero.getInstance();
         back.Think(delta);
         hero.Think(delta);
+        spriteManager.Think(delta);
         return 0;
     }
 }

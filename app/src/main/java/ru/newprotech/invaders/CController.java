@@ -10,6 +10,9 @@ public class CController {
     private static CController ourInstance = new CController();
     private PointF MoveHere,ShootHere;
     private boolean Move, Shoot;
+    private int Pointers[];
+    public static final int POINTER_MOVE = 0;
+    public static final int POINTER_SHOOT = 1;
     public static CController getInstance() {
         return ourInstance;
     }
@@ -19,6 +22,15 @@ public class CController {
         ShootHere = new PointF(0,0);
         Move = false;
         Shoot = false;
+        Pointers = new int[2];
+    }
+
+    public int getPointer(int num) {
+        return Pointers[num];
+    }
+
+    public void setPointer(int num, int pointer) {
+        Pointers[num] = pointer;
     }
 
     public void StopMove(){

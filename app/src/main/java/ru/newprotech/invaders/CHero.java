@@ -37,16 +37,31 @@ public class CHero implements IThinker{
                 sprite.setVy((point.y - sprite.getY()) * .4f/rate);
             }
             else
-                sprite.stop();
+                sprite.stopMove();
         }
         else
-            sprite.stop();
-        sprite.Think(delta);
+            sprite.stopMove();
+        if (controller.isShoot()){
+            PointF point = controller.getShootHere();
+            float angle = (float) Math.toDegrees(Math.atan2(point.y - sprite.getY(),
+                                                            point.x - sprite.getX()))+90;
+            if (Math.abs(angle-sprite.getPhi()) > .1)
+                if (Math.abs(angle-sprite.getPhi()) <180)
+                    sprite.setVphi(Math.signum(angle-sprite.getPhi())*.1f);
+                else
+                    sprite.setVphi(-Math.signum(angle-sprite.getPhi())*.1f);
+            else
+                sprite.stopRotate();
+        }
+        else
+            sprite.stopRotate();
+//        sprite.Think(delta);
         return 0;
     }
 
     public void setSprite(CSprite sprite) {
         this.sprite = sprite;
+//        sprite.setVphi(.1f);
     }
 
     public float getX() {

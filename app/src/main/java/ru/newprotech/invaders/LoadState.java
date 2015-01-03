@@ -13,7 +13,7 @@ public class LoadState implements GameState {
 
     private int TextAlpha;
     private int AlphaSpeed;
-    LoadingTask loadingTask;
+    private LoadingTask loadingTask;
     private Float Progress;
 
     @Override
