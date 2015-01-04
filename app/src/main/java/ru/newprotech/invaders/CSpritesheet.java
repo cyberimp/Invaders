@@ -17,6 +17,10 @@ public class CSpritesheet {
     private int frames_count;
     private int row_size;
 
+    public RectF getRectF(){
+        return new RectF(0,0,frame_x,frame_y);
+    }
+
     public CSpritesheet(int resource,int size_x, int size_y){
         GameContext context = GameContext.getInstance();
         sheet = BitmapFactory.decodeResource(context.getResources(),resource);

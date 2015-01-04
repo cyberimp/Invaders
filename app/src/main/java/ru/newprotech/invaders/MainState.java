@@ -15,6 +15,7 @@ public class MainState implements GameState {
         CHero hero = CHero.getInstance();
         CController controller = CController.getInstance();
         switch (event.getAction()){
+            //TODO: add multitouch support
             case MotionEvent.ACTION_DOWN:
                 if (    Math.abs(event.getX()-hero.getX())<50 &&
                         Math.abs(event.getY()-hero.getY())<50) {
@@ -23,6 +24,7 @@ public class MainState implements GameState {
                     result = true;
                 }
                 else{
+                    hero.startAnimation(100,4,7);
                     controller.setPointer(0,CController.POINTER_SHOOT);
                     controller.StartShoot(new PointF(event.getX(), event.getY()));
                     result = true;
@@ -40,8 +42,10 @@ public class MainState implements GameState {
 
                 if (controller.getPointer(0)==CController.POINTER_MOVE)
                     controller.StopMove();
-                else
+                else {
+                    hero.startAnimation(100, 0, 3);
                     controller.StopShoot();
+                }
         }
         return result;
     }

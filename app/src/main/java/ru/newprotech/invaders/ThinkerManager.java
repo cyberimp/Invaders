@@ -1,6 +1,7 @@
 package ru.newprotech.invaders;
 
 import android.graphics.Canvas;
+import android.graphics.RectF;
 import android.util.SparseArray;
 
 import java.util.Iterator;
@@ -28,6 +29,10 @@ public class ThinkerManager implements IThinker{
                 i.Think(delta);
         }
         return 0;
+    }
+
+    public RectF getRectF() {
+        return null;
     }
 
     ThinkerManager(){

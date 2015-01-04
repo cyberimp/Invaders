@@ -1,6 +1,7 @@
 package ru.newprotech.invaders;
 
 import android.graphics.Canvas;
+import android.graphics.RectF;
 
 /**
  * Created by 6003 on 27.12.2014.
@@ -73,6 +74,12 @@ public class CSprite implements IThinker {
         return vy;
     }
 
+    public RectF getRectF(){
+        RectF rect = spritesheet.getRectF();
+        rect.offsetTo(x-rect.width()/2,y-rect.height()/2);
+        return rect;
+    }
+
 
     public void setAnimation( int delay, int start, int end){
         animDelay = delay;
@@ -95,6 +102,7 @@ public class CSprite implements IThinker {
 
     @Override
     public int Think(long delta) {
+        //TODO: fix ship not rotating to left from 0
         x+=vx*delta;
         y+=vy*delta;
         phi+=vphi*delta;

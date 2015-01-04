@@ -14,8 +14,11 @@ public class CHero implements IThinker{
         return ourInstance;
     }
 
+    CWeapon weapon;
+
     private CHero() {
         sprite=null;
+        weapon = new CWeapon();
     }
 
     private CSprite sprite;
@@ -52,11 +55,16 @@ public class CHero implements IThinker{
                     sprite.setVphi(-Math.signum(angle-sprite.getPhi())*.1f);
             else
                 sprite.stopRotate();
+            weapon.Think(delta);
         }
         else
             sprite.stopRotate();
 //        sprite.Think(delta);
         return 0;
+    }
+
+    public void startAnimation(int delay, int start, int end){
+        sprite.setAnimation(delay,start,end);
     }
 
     public void setSprite(CSprite sprite) {
@@ -70,5 +78,9 @@ public class CHero implements IThinker{
 
     public float getY() {
         return sprite.getY();
+    }
+
+    public float getPhi() {
+        return sprite.getPhi();
     }
 }

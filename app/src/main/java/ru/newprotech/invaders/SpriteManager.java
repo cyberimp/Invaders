@@ -12,11 +12,11 @@ public class SpriteManager extends ThinkerManager {
         return ourInstance;
     }
 
-    public CSprite createSprite(int res,float x, float y){
+    public static CSprite createSprite(int res,float x, float y){
         CSpritesheetManager spritesheetManager = CSpritesheetManager.getInstance();
         CSprite temp=new CSprite(spritesheetManager.getSheet(res));
         temp.setXY(x,y);
-        if (this.Add(temp))
+        if (ourInstance.Add(temp))
             return temp;
         else
             return null;

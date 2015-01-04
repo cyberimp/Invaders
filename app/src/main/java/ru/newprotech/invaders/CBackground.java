@@ -12,6 +12,7 @@ public class CBackground implements IThinker {
     private Bitmap image;
     private float deltaY;
     private float screenY = 0;
+    private RectF screenSize;
 
     private static CBackground Instance = new CBackground();
 
@@ -24,6 +25,7 @@ public class CBackground implements IThinker {
         GameContext context = GameContext.getInstance();
         Bitmap back = BitmapFactory.decodeResource(context.getResources(),res,options);
         image = Bitmap.createScaledBitmap(back, x, y, true);
+        screenSize = new RectF(0,0,x,y);
     }
 
     @Override
@@ -42,5 +44,9 @@ public class CBackground implements IThinker {
         if (deltaY>screenY)
             deltaY = 0;
         return 0;
+    }
+
+    public RectF getRectF() {
+        return screenSize;
     }
 }
