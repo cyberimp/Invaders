@@ -107,9 +107,9 @@ public class CSprite implements IThinker {
         y+=vy*delta;
         phi+=vphi*delta;
         if (phi > 360)
-            phi = phi-360;
+            phi = phi-360.f;
         if (phi <0 )
-            phi= phi+360;
+            phi= phi+360.f;
         if(animDelay >0) {
             animWait -= delta;
             if (animWait < 0) {
@@ -119,7 +119,11 @@ public class CSprite implements IThinker {
                     frame = startFrame;
             }
         }
-        return 0;
+        RectF rectF = CBackground.getRectF();
+        if ( x < -rectF.width()||x>rectF.width()*2.f||y<-rectF.height()||y>rectF.height()*2)
+            return THINKER_DEAD;
+        else
+            return 0;
     }
 
     public void stop() {

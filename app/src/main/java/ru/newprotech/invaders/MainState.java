@@ -1,7 +1,6 @@
 package ru.newprotech.invaders;
 
 import android.graphics.Canvas;
-import android.graphics.Point;
 import android.graphics.PointF;
 import android.view.MotionEvent;
 
@@ -53,7 +52,7 @@ public class MainState implements GameState {
     @Override
     public void Draw(Canvas canvas) {
         CBackground back = CBackground.getInstance();
-        SpriteManager spriteManager = SpriteManager.getInstance();
+        CSpriteManager spriteManager = CSpriteManager.getInstance();
 //        CHero hero = CHero.getInstance();
         back.Draw(canvas);
         spriteManager.Draw(canvas);
@@ -64,7 +63,7 @@ public class MainState implements GameState {
     @Override
     public int Think(long delta) {
         CBackground back = CBackground.getInstance();
-        SpriteManager spriteManager = SpriteManager.getInstance();
+        CSpriteManager spriteManager = CSpriteManager.getInstance();
         CHero hero = CHero.getInstance();
         back.Think(delta);
         hero.Think(delta);

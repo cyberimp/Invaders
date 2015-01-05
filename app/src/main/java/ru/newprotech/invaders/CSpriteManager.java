@@ -5,10 +5,10 @@ import java.util.Vector;
 /**
  * Created by kinzoxbeato on 03.01.2015.
  */
-public class SpriteManager extends ThinkerManager {
-    private static SpriteManager ourInstance = new SpriteManager();
+public class CSpriteManager extends ThinkerManager {
+    private static CSpriteManager ourInstance = new CSpriteManager();
 
-    public static SpriteManager getInstance() {
+    public static CSpriteManager getInstance() {
         return ourInstance;
     }
 
@@ -27,7 +27,7 @@ public class SpriteManager extends ThinkerManager {
         return this.collection.add(sprite);
     }
 
-    private SpriteManager() {
+    private CSpriteManager() {
         this.collection = new Vector<>();
     }
 }

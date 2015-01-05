@@ -9,7 +9,7 @@ public class CWeapon {
     public void Think(long delta){
         if (weaponTemp == 0){
             CHero hero = CHero.getInstance();
-            CSprite bullet = SpriteManager.createSprite(R.drawable.bullet,hero.getX(),hero.getY());
+            CSprite bullet = CSpriteManager.createSprite(R.drawable.bullet, hero.getX(), hero.getY());
             //TODO: lots of math, maybe add methods for r-phy speed?
             bullet.setVx((float) Math.cos(Math.toRadians(hero.getPhi()-90))*.1f);
             bullet.setVy((float) Math.sin(Math.toRadians(hero.getPhi()-90))*.1f);

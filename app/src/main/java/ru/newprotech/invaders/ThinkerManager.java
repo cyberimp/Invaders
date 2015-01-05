@@ -24,10 +24,13 @@ public class ThinkerManager implements IThinker{
 
     @Override
     public int Think(long delta) {
+        Vector<IThinker> deletable = new Vector<>();
         for (IThinker i:collection) {
             if (i!=null)
-                i.Think(delta);
+                if(i.Think(delta)==IThinker.THINKER_DEAD)
+                    deletable.add(i);
         }
+        collection.removeAll(deletable);
         return 0;
     }
 

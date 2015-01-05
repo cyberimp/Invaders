@@ -22,10 +22,9 @@ class LoadingTask extends AsyncTask<Float,Integer,Void> {
 
         CHero hero = CHero.getInstance();
         CSpritesheetManager ssManager = CSpritesheetManager.getInstance();
-        SpriteManager spriteManager = SpriteManager.getInstance();
         ssManager.loadSheet(R.drawable.warship, 32, 32);
         ssManager.loadSheet(R.drawable.bullet,8,8);
-        CSprite warship = spriteManager.createSprite(R.drawable.warship,160,450);
+        CSprite warship = CSpriteManager.createSprite(R.drawable.warship,160,450);
         warship.setAnimation(100,0,3);
         hero.setSprite(warship);
         params[0] = 100.f;

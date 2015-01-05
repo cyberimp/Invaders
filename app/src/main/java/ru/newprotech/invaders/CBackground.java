@@ -46,7 +46,7 @@ public class CBackground implements IThinker {
         return 0;
     }
 
-    public RectF getRectF() {
-        return screenSize;
+    public static RectF getRectF() {
+        return Instance.screenSize;
     }
 }
