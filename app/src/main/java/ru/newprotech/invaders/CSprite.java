@@ -102,13 +102,12 @@ public class CSprite implements IThinker {
 
     @Override
     public int Think(long delta) {
-        //TODO: fix ship not rotating to left from 0
         x+=vx*delta;
         y+=vy*delta;
         phi+=vphi*delta;
-        if (phi > 360)
+        if (phi > 270)
             phi = phi-360.f;
-        if (phi <0 )
+        if (phi <-90 )
             phi= phi+360.f;
         if(animDelay >0) {
             animWait -= delta;
