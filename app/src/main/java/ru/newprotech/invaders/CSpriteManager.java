@@ -5,7 +5,7 @@ import java.util.Vector;
 /**
  * Created by kinzoxbeato on 03.01.2015.
  */
-public class CSpriteManager extends ThinkerManager {
+public class CSpriteManager extends CThinkerManager {
     private static CSpriteManager ourInstance = new CSpriteManager();
 
     public static CSpriteManager getInstance() {
@@ -23,11 +23,11 @@ public class CSpriteManager extends ThinkerManager {
 
     }
 
-    private boolean Add(CSprite sprite) {
-        return this.collection.add(sprite);
-    }
 
     private CSpriteManager() {
         this.collection = new Vector<>();
+    }
+    public static void init(){
+        ourInstance.collection = new Vector<>();
     }
 }

@@ -3,6 +3,7 @@ package ru.newprotech.invaders;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.RectF;
 import android.os.AsyncTask;
 import android.view.MotionEvent;
 
@@ -54,6 +55,16 @@ public class LoadState implements GameState {
             return GameState.STATE_MAIN;
         else
             return GameState.STATE_SAME;
+    }
+
+    @Override
+    public boolean Collide(RectF rect) {
+        return false;
+    }
+
+    @Override
+    public void Die() {
+
     }
 
     public LoadState() {

@@ -11,7 +11,7 @@ import java.util.Vector;
 /**
  * Created by kinzoxbeato on 28.12.2014.
  */
-public class ThinkerManager implements IThinker{
+public class CThinkerManager implements IThinker{
 
     Vector<IThinker> collection;
     @Override
@@ -27,18 +27,40 @@ public class ThinkerManager implements IThinker{
         Vector<IThinker> deletable = new Vector<>();
         for (IThinker i:collection) {
             if (i!=null)
-                if(i.Think(delta)==IThinker.THINKER_DEAD)
+                if(i.Think(delta)==THINKER_DEAD){
                     deletable.add(i);
+                }
         }
         collection.removeAll(deletable);
         return 0;
+    }
+
+    @Override
+    public boolean Collide(RectF rect){
+        boolean result = false;
+        for (IThinker i:collection) {
+            if(i.Collide(rect)) {
+                result = true;
+                i.Die();
+            }
+        }
+        return result;
+    }
+
+    @Override
+    public void Die() {
+
+    }
+
+    public boolean Add(IThinker thinker) {
+        return this.collection.add(thinker);
     }
 
     public RectF getRectF() {
         return null;
     }
 
-    ThinkerManager(){
+    CThinkerManager(){
         collection = new Vector<>();
     }
 }

@@ -3,6 +3,7 @@ package ru.newprotech.invaders;
 import android.graphics.Canvas;
 import android.graphics.Point;
 import android.graphics.PointF;
+import android.graphics.RectF;
 
 /**
  * Created by kinzoxbeato on 28.12.2014.
@@ -16,9 +17,11 @@ public class CHero implements IThinker{
 
     CWeapon weapon;
 
+    long invul=0;
+
     private CHero() {
         sprite=null;
-        weapon = new CWeapon();
+        weapon = new CWeapon(0,0);
     }
 
     private CSprite sprite;
@@ -61,6 +64,19 @@ public class CHero implements IThinker{
             sprite.stopRotate();
 //        sprite.Think(delta);
         return 0;
+    }
+
+    @Override
+    public boolean Collide(RectF rect) {
+        if (invul == 0)
+            return false;
+        return sprite.getRectF().intersect(rect);
+    }
+
+    @Override
+    public void Die() {
+        invul = 1000;
+        sprite.startBlink();
     }
 
     public void startAnimation(int delay, int start, int end){

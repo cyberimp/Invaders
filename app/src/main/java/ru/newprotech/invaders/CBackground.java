@@ -46,6 +46,16 @@ public class CBackground implements IThinker {
         return 0;
     }
 
+    @Override
+    public boolean Collide(RectF rect) {
+        return true;
+    }
+
+    @Override
+    public void Die() {
+
+    }
+
     public static RectF getRectF() {
         return Instance.screenSize;
     }

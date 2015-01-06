@@ -14,6 +14,7 @@ public class CSprite implements IThinker {
     private int animDelay,startFrame,endFrame;
     private int animWait;
     private int frame;
+    private boolean dead=false;
     private CSpritesheet spritesheet;
 
     CSprite(CSpritesheet spritesheet) {
@@ -119,10 +120,22 @@ public class CSprite implements IThinker {
             }
         }
         RectF rectF = CBackground.getRectF();
-        if ( x < -rectF.width()||x>rectF.width()*2.f||y<-rectF.height()||y>rectF.height()*2)
+        if ( x < -rectF.width()||x>rectF.width()*2.f
+                ||y<-rectF.height()||y>rectF.height()*2
+                || dead)
             return THINKER_DEAD;
         else
             return 0;
+    }
+
+    @Override
+    public boolean Collide(RectF rect) {
+        return false;
+    }
+
+    @Override
+    public void Die() {
+        dead = true;
     }
 
     public void stop() {
@@ -138,5 +151,9 @@ public class CSprite implements IThinker {
 
     public void stopRotate() {
         vphi = 0;
+    }
+
+    public void startBlink() {
+
     }
 }

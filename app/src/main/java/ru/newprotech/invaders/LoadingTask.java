@@ -12,6 +12,8 @@ class LoadingTask extends AsyncTask<Float,Integer,Void> {
     @Override
     protected Void doInBackground(Float... params) {
 //        back = new CBackground(R.drawable.nebula,display.getWidth(),display.getHeight());
+        CSpriteManager.init();
+        CHeroBulletManager.init();
         params[0] = 0.f;
         GameContext gameContext = GameContext.getInstance();
         CBackground back = CBackground.getInstance();
@@ -24,6 +26,7 @@ class LoadingTask extends AsyncTask<Float,Integer,Void> {
         CSpritesheetManager ssManager = CSpritesheetManager.getInstance();
         ssManager.loadSheet(R.drawable.warship, 32, 32);
         ssManager.loadSheet(R.drawable.bullet,8,8);
+        ssManager.loadSheet(R.drawable.skull,64,64);
         CSprite warship = CSpriteManager.createSprite(R.drawable.warship,160,450);
         warship.setAnimation(100,0,3);
         hero.setSprite(warship);

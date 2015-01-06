@@ -3,6 +3,7 @@ package ru.newprotech.invaders;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.RectF;
 
 /**
  * Created by kinzoxbeato on 31.12.2014.
@@ -39,5 +40,15 @@ public class FpsCounter implements IThinker {
             frames = 0;
         }
         return 0;
+    }
+
+    @Override
+    public boolean Collide(RectF rect) {
+        return false;
+    }
+
+    @Override
+    public void Die() {
+
     }
 }

@@ -2,6 +2,7 @@ package ru.newprotech.invaders;
 
 import android.graphics.Canvas;
 import android.graphics.PointF;
+import android.graphics.RectF;
 import android.view.MotionEvent;
 
 /**
@@ -53,10 +54,10 @@ public class MainState implements GameState {
     public void Draw(Canvas canvas) {
         CBackground back = CBackground.getInstance();
         CSpriteManager spriteManager = CSpriteManager.getInstance();
-//        CHero hero = CHero.getInstance();
+        CHero hero = CHero.getInstance();
         back.Draw(canvas);
         spriteManager.Draw(canvas);
-//        hero.Draw(canvas);
+        hero.Draw(canvas);
 
     }
 
@@ -65,9 +66,26 @@ public class MainState implements GameState {
         CBackground back = CBackground.getInstance();
         CSpriteManager spriteManager = CSpriteManager.getInstance();
         CHero hero = CHero.getInstance();
+        CEnemyManager enemyManager = CEnemyManager.getInstance();
+        CHeroBulletManager bulletManager = CHeroBulletManager.getInstance();
         back.Think(delta);
         hero.Think(delta);
         spriteManager.Think(delta);
+        enemyManager.Think(delta);
+        bulletManager.Think(delta);
         return 0;
+    }
+
+    @Override
+    public boolean Collide(RectF rect) {
+        return false;
+    }
+
+    @Override
+    public void Die() {
+
+    }
+    MainState(){
+        CEnemyManager.createEnemy(R.drawable.skull,120,-10,0,.05f);
     }
 }
