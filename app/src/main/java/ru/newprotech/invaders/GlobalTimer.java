@@ -14,8 +14,9 @@ public class GlobalTimer {
         return ourInstance;
     }
     public long getDelta(){
-        long result = SystemClock.currentThreadTimeMillis() - lastCheck;
-        lastCheck = SystemClock.currentThreadTimeMillis();
+        long result = System.currentTimeMillis() - lastCheck;
+//        lastCheck = SystemClock.currentThreadTimeMillis();
+        lastCheck = System.currentTimeMillis();
         return result;
     }
 
@@ -27,6 +28,8 @@ public class GlobalTimer {
     }
 
     private GlobalTimer() {
-        lastCheck = SystemClock.currentThreadTimeMillis();
+
+//        lastCheck = SystemClock.currentThreadTimeMillis();
+        lastCheck = System.currentTimeMillis();
     }
 }

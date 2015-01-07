@@ -76,15 +76,6 @@ public class MainState implements GameState {
         return 0;
     }
 
-    @Override
-    public boolean Collide(RectF rect) {
-        return false;
-    }
-
-    @Override
-    public void Die() {
-
-    }
     MainState(){
         CEnemyManager.createEnemy(R.drawable.skull,120,-10,0,.05f);
     }

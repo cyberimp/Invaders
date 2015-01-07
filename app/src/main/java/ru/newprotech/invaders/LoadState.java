@@ -57,16 +57,6 @@ public class LoadState implements GameState {
             return GameState.STATE_SAME;
     }
 
-    @Override
-    public boolean Collide(RectF rect) {
-        return false;
-    }
-
-    @Override
-    public void Die() {
-
-    }
-
     public LoadState() {
         TextAlpha = 255;
         AlphaSpeed = -1;

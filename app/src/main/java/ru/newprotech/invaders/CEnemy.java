@@ -11,6 +11,7 @@ import java.lang.ref.WeakReference;
 public class CEnemy implements IThinker {
 
     WeakReference<CSprite> sprite;
+    int hp = 10;
 
     @Override
     public void Draw(Canvas canvas) {
@@ -21,9 +22,11 @@ public class CEnemy implements IThinker {
     @Override
     public int Think(long delta) {
         CHeroBulletManager heroBulletManager = CHeroBulletManager.getInstance();
-        if (heroBulletManager.Collide(sprite.get().getRectF())){
-            Die();
-            return THINKER_DEAD;
+        if (heroBulletManager.Collide(sprite.get().getRectF()))
+            hp--;
+        if (hp <= 0) {
+             Die();
+             return THINKER_DEAD;
         }
         else
             return 0;

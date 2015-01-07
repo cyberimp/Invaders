@@ -1,0 +1,49 @@
+package ru.newprotech.invaders;
+
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.RectF;
+
+/**
+ * Created by kinzoxbeato on 07.01.2015.
+ */
+public class CStar implements IThinker {
+
+    float x,y,size;
+
+    @Override
+    public void Draw(Canvas canvas) {
+        Paint paint = new Paint();
+        paint.setStrokeWidth(size);
+        paint.setColor(Color.LTGRAY);
+        canvas.drawPoint(x,y,paint);
+    }
+
+    @Override
+    public int Think(long delta) {
+        y+=(size+1);
+        if (y> CBackground.getRectF().height())
+            Die();
+        return 0;
+    }
+
+    @Override
+    public boolean Collide(RectF rect) {
+        return false;
+    }
+
+    @Override
+    public void Die() {
+        x = (float) (Math.random()*CBackground.getRectF().width());
+        y = 0;
+        size = (float) (4*Math.random());
+    }
+
+
+    CStar(){
+        x = (float) (Math.random()*CBackground.getRectF().width());
+        y = (float) (Math.random()*CBackground.getRectF().height());
+        size = (float) (4*Math.random());
+    }
+}
