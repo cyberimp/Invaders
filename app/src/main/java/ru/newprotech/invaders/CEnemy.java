@@ -8,9 +8,18 @@ import java.lang.ref.WeakReference;
 /**
  * Created by kinzoxbeato on 06.01.2015.
  */
-public class CEnemy implements IThinker {
 
+/**
+ * Enemy class
+ */
+public class CEnemy implements IThinker {
+    /**
+     * Reference to sprite
+     */
     WeakReference<CSprite> sprite;
+    /**
+     * Enemy HP value
+     */
     int hp = 10;
 
     @Override

@@ -8,6 +8,10 @@ import android.view.WindowManager;
 /**
  * Created by kinzoxbeato on 28.12.2014.
  */
+
+/**
+ * Task for loading resources in separate thread
+ */
 class LoadingTask extends AsyncTask<Float,Integer,Void> {
     @Override
     protected Void doInBackground(Float... params) {
