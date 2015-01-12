@@ -12,24 +12,16 @@ import java.lang.ref.WeakReference;
 /**
  * Enemy class
  */
-public class CEnemy implements IThinker {
-    /**
-     * Reference to sprite
-     */
-    WeakReference<CSprite> sprite;
+public class CEnemy extends CSpritedThinker {
     /**
      * Enemy HP value
      */
     int hp = 10;
 
     @Override
-    public void Draw(Canvas canvas) {
-        if (sprite.get()!=null)
-            sprite.get().Draw(canvas);
-    }
-
-    @Override
     public int Think(long delta) {
+        if (sprite.get() == null||dead)
+            return THINKER_DEAD;
         CHeroBulletManager heroBulletManager = CHeroBulletManager.getInstance();
         if (heroBulletManager.Collide(sprite.get().getRectF()))
             hp--;
@@ -39,16 +31,6 @@ public class CEnemy implements IThinker {
         }
         else
             return 0;
-    }
-
-    @Override
-    public boolean Collide(RectF rect) {
-        return sprite.get().Collide(rect);
-    }
-
-    @Override
-    public void Die() {
-        sprite.get().Die();
     }
 
     public CEnemy (int res, float x, float y, float vx, float vy){

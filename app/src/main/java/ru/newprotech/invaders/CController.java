@@ -31,8 +31,8 @@ public class CController {
         return Pointers[state];
     }
 
-    public void setFinger(int state, int fingerid){
-       Pointers[state] = fingerid;
+    public void setFinger(int state, int fingerID){
+       Pointers[state] = fingerID;
     }
 
 
