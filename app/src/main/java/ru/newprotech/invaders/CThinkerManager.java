@@ -15,7 +15,7 @@ public class CThinkerManager implements IThinker{
 
     Vector<IThinker> collection;
     @Override
-    public void Draw(Canvas canvas) {
+    public synchronized void Draw(Canvas canvas) {
         for (IThinker i:collection) {
             if (i!=null)
                 i.Draw(canvas);
@@ -23,7 +23,7 @@ public class CThinkerManager implements IThinker{
     }
 
     @Override
-    public int Think(long delta) {
+    public synchronized int Think(long delta) {
         Vector<IThinker> deletable = new Vector<>();
         for (IThinker i:collection) {
             if (i!=null)
@@ -36,7 +36,7 @@ public class CThinkerManager implements IThinker{
     }
 
     @Override
-    public boolean Collide(RectF rect){
+    public synchronized boolean Collide(RectF rect){
         boolean result = false;
         for (IThinker i:collection) {
             if(i.Collide(rect)) {
@@ -52,7 +52,7 @@ public class CThinkerManager implements IThinker{
 
     }
 
-    public boolean Add(IThinker thinker) {
+    public synchronized boolean Add(IThinker thinker) {
         return this.collection.add(thinker);
     }
 

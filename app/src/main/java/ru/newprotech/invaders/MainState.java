@@ -106,6 +106,7 @@ public class MainState implements GameState {
     }
 
     MainState(){
-        CEnemyManager.createEnemy(R.drawable.skull,120,-10,0,.05f);
+       ScriptThread thread = new ScriptThread();
+       thread.start();
     }
 }

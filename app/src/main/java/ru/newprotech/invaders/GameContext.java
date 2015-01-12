@@ -17,7 +17,9 @@ public class GameContext {
 
     private GameContext() {
     }
-
+    public static Context getContext(){
+        return ourInstance.cont;
+    }
     public void setCont(Context cont) {
         this.cont = cont;
     }
