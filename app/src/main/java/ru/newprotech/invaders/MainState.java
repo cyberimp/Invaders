@@ -8,44 +8,73 @@ import android.view.MotionEvent;
 /**
  * Created by kinzoxbeato on 28.12.2014.
  */
+
+/**
+ * Main game state
+ */
 public class MainState implements GameState {
     @Override
     public boolean TouchHandle(MotionEvent event) {
         boolean result = false;
         CHero hero = CHero.getInstance();
         CController controller = CController.getInstance();
-        switch (event.getAction()){
+//        int action = event.getAction();
+        int actionCode = event.getActionMasked();
+        int pid = event.getActionIndex();
+        int fingerID = event.getPointerId(pid);
+
+        switch (actionCode){
             //TODO: add multitouch support
             case MotionEvent.ACTION_DOWN:
-                if (    Math.abs(event.getX()-hero.getX())<50 &&
-                        Math.abs(event.getY()-hero.getY())<50) {
-                    controller.setPointer(0,CController.POINTER_MOVE);
-                    controller.StartMove(new PointF(event.getX(), event.getY()));
-                    result = true;
+            case MotionEvent.ACTION_POINTER_DOWN:
+                if (    Math.abs(event.getX(pid)-hero.getX())<50 &&
+                        Math.abs(event.getY(pid)-hero.getY())<50) {
+                    if (controller.getFinger(CController.POINTER_MOVE) == -1) {
+                        controller.setFinger(CController.POINTER_MOVE, fingerID);
+                        controller.StartMove(new PointF(event.getX(pid), event.getY(pid)));
+                        result = true;
+                    }
+                    else
+                        result = false;
                 }
                 else{
-                    hero.startAnimation(100,4,7);
-                    controller.setPointer(0,CController.POINTER_SHOOT);
-                    controller.StartShoot(new PointF(event.getX(), event.getY()));
-                    result = true;
+                    if (controller.getFinger(CController.POINTER_SHOOT) == -1) {
+                        controller.setFinger(CController.POINTER_SHOOT, fingerID);
+                        hero.startAnimation(100, 4, 7);
+                        controller.StartShoot(new PointF(event.getX(pid), event.getY(pid)));
+                        result = true;
+                    }
+                    else
+                        result = false;
                 }
                 break;
             case MotionEvent.ACTION_MOVE:
-                if (controller.getPointer(0)==CController.POINTER_MOVE)
-                    controller.StartMove(new PointF(event.getX(), event.getY()));
+                if (controller.getFinger(CController.POINTER_MOVE)==fingerID) {
+                    controller.StartMove(new PointF(event.getX(pid), event.getY(pid)));
+                    result = true;
+                }
+                else if (controller.getFinger(CController.POINTER_SHOOT)==fingerID) {
+                    controller.StartShoot(new PointF(event.getX(pid), event.getY(pid)));
+                    result = true;
+                }
                 else
-                    controller.StartShoot(new PointF(event.getX(), event.getY()));
-                result = true;
+                    result = false;
                 break;
             case MotionEvent.ACTION_UP:
-                result=true;
-
-                if (controller.getPointer(0)==CController.POINTER_MOVE)
+            case MotionEvent.ACTION_POINTER_UP:
+                if (controller.getFinger(CController.POINTER_MOVE)==fingerID) {
                     controller.StopMove();
-                else {
-                    hero.startAnimation(100, 0, 3);
-                    controller.StopShoot();
+                    controller.setFinger(CController.POINTER_MOVE, -1);
+                    result = true;
                 }
+                else if (controller.getFinger(CController.POINTER_SHOOT)==fingerID) {
+                    hero.startAnimation(100, 0, 3);
+                    controller.setFinger(CController.POINTER_SHOOT, -1);
+                    controller.StopShoot();
+                    result = true;
+                }
+                else
+                    result = false;
         }
         return result;
     }

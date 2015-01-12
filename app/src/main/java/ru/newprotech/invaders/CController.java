@@ -23,7 +23,18 @@ public class CController {
         Move = false;
         Shoot = false;
         Pointers = new int[2];
+        Pointers[0] = -1;
+        Pointers[1] = -1;
     }
+
+    public int getFinger(int state){
+        return Pointers[state];
+    }
+
+    public void setFinger(int state, int fingerid){
+       Pointers[state] = fingerid;
+    }
+
 
     public int getPointer(int num) {
         return Pointers[num];

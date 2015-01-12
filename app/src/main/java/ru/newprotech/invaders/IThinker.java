@@ -13,6 +13,11 @@ import android.graphics.RectF;
  */
 interface IThinker {
     public static final int THINKER_DEAD=1;
+
+    /**
+     * Draw method
+     * @param canvas Target canvas
+     */
     public void Draw(Canvas canvas);
     public int Think(long delta);
     public boolean Collide(RectF rect);

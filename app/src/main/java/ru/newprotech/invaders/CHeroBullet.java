@@ -19,14 +19,20 @@ public class CHeroBullet implements IThinker {
 
     @Override
     public boolean Collide(RectF rectF){
-        RectF temp = sprite.get().getRectF();
-        return temp.intersect(rectF);
+        if (sprite.get()!=null) {
+            RectF temp = sprite.get().getRectF();
+            return temp.intersect(rectF);
+        }
+        else
+            return false;
     }
 
     @Override
     public void Die() {
         dead = true;
-        sprite.get().Die();
+        if (sprite.get()!=null) {
+            sprite.get().Die();
+        }
     }
 
     @Override
