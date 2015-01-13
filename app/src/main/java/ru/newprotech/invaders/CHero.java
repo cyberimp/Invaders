@@ -67,7 +67,7 @@ public class CHero implements IThinker{
 
     @Override
     public int Collide(RectF rect) {
-        if (invul > 0||!sprite.getRectF().intersect(rect))
+        if (!sprite.getRectF().intersect(rect))
             return 0;
         else
             return 1;
@@ -98,5 +98,14 @@ public class CHero implements IThinker{
 
     public float getPhi() {
         return sprite.getPhi();
+    }
+
+    public void PowerUp() {
+        weapon.PowerUp();
+    }
+
+    public void init() {
+        invul = 1000;
+        weapon.init();
     }
 }

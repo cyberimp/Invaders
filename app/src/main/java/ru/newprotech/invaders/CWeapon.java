@@ -6,18 +6,19 @@ package ru.newprotech.invaders;
 public class CWeapon {
     private int coolDown = 100;
     private int weaponTemp = 0;
+    private int power=1;
     private float dx,dy;
     public void Think(long delta){
         if (weaponTemp == 0){
             CHero hero = CHero.getInstance();
-            //TODO: place CHeroBullet-emitting code here
-//            CSprite bullet = CSpriteManager.createSprite(R.drawable.bullet, hero.getX(), hero.getY());
-//            bullet.setVx((float) Math.cos(Math.toRadians(hero.getPhi()-90))*.1f);
-//            bullet.setVy((float) Math.sin(Math.toRadians(hero.getPhi()-90))*.1f);
-//            bullet.setAnimation(100,0,3);
-            CHeroBulletManager.createBullet(R.drawable.bullet,hero.getPhi()-90,.2f,hero.getX(),hero.getY());
-            CHeroBulletManager.createBullet(R.drawable.bullet,hero.getPhi()-95,.2f,hero.getX(),hero.getY());
-            CHeroBulletManager.createBullet(R.drawable.bullet,hero.getPhi()-85,.2f,hero.getX(),hero.getY());
+            CHeroBulletManager.createBullet(R.drawable.bullet,hero.getPhi()-90,.2f,
+                    hero.getX(),hero.getY());
+            for (int i = 0; i < power; i++) {
+                CHeroBulletManager.createBullet(R.drawable.bullet,hero.getPhi()-90 - i*2,.2f,
+                        hero.getX(),hero.getY());
+                CHeroBulletManager.createBullet(R.drawable.bullet,hero.getPhi()-90 + i*2,.2f,
+                        hero.getX(),hero.getY());
+            }
         }
         weaponTemp+=delta;
         if (weaponTemp > coolDown)
@@ -27,5 +28,17 @@ public class CWeapon {
     public CWeapon(float dx, float dy) {
         this.dx = dx;
         this.dy = dy;
+    }
+
+    public void PowerUp() {
+        power++;
+    }
+
+    public void init() {
+        power = 1;
+    }
+
+    public int getPower() {
+        return power;
     }
 }

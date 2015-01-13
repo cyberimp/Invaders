@@ -39,8 +39,10 @@ public class CEnemy extends CSpritedThinker {
 
     @Override
     public void Die() {
-        if (sprite.get() != null)
-            CParticleManager.createExplosion(sprite.get().getX(),sprite.get().getY());
+        if (sprite.get() != null) {
+            CParticleManager.createExplosion(sprite.get().getX(), sprite.get().getY());
+            CBonusManager.createBonus(sprite.get().getX(), sprite.get().getY());
+        }
         super.Die();
     }
 }

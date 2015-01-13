@@ -58,4 +58,10 @@ public class CSpritedThinker implements IThinker {
         if (sprite.get()!=null)
             sprite.get().setVy(vy);
     }
+    public RectF getRectF(){
+        if (sprite.get()!=null)
+            return sprite.get().getRectF();
+        else
+            return null;
+    }
 }

@@ -98,9 +98,11 @@ public class MainState implements GameState {
         CHero hero = CHero.getInstance();
         CEnemyManager enemyManager = CEnemyManager.getInstance();
         CHeroBulletManager bulletManager = CHeroBulletManager.getInstance();
+        CBonusManager bonusManager = CBonusManager.getInstance();
         CParticleManager particleManager = CParticleManager.getInstance();
         back.Think(delta);
         hero.Think(delta);
+        bonusManager.Think(delta);
         spriteManager.Think(delta);
         enemyManager.Think(delta);
         bulletManager.Think(delta);
