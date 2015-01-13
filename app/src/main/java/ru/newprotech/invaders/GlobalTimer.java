@@ -1,7 +1,5 @@
 package ru.newprotech.invaders;
 
-import android.os.SystemClock;
-
 /**
  * Created by kinzoxbeato on 31.12.2014.
  */

@@ -1,7 +1,5 @@
 package ru.newprotech.invaders;
 
-import android.graphics.RectF;
-
 import java.util.Vector;
 
 /**

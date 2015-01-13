@@ -1,8 +1,5 @@
 package ru.newprotech.invaders;
 
-import android.graphics.Canvas;
-import android.graphics.RectF;
-
 import java.lang.ref.WeakReference;
 
 /**

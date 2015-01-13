@@ -2,10 +2,7 @@ package ru.newprotech.invaders;
 
 import android.graphics.Canvas;
 import android.graphics.RectF;
-import android.util.SparseArray;
 
-import java.util.Iterator;
-import java.util.List;
 import java.util.Vector;
 
 /**
@@ -36,13 +33,13 @@ public class CThinkerManager implements IThinker{
     }
 
     @Override
-    public synchronized boolean Collide(RectF rect){
-        boolean result = false;
+    public synchronized int Collide(RectF rect){
+        int result = 0;
         for (IThinker i:collection) {
-            if(i.Collide(rect)) {
-                result = true;
+            int collide = i.Collide(rect);
+            result+=collide;
+            if(collide>0)
                 i.Die();
-            }
         }
         return result;
     }
@@ -50,6 +47,10 @@ public class CThinkerManager implements IThinker{
     @Override
     public void Die() {
 
+    }
+
+    public synchronized void Clear(){
+        collection = new Vector<>();
     }
 
     public synchronized boolean Add(IThinker thinker) {

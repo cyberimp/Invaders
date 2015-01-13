@@ -3,13 +3,9 @@ package ru.newprotech.invaders;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.Point;
-import android.graphics.Rect;
-import android.view.Display;
+import android.support.annotation.NonNull;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.WindowManager;
 
 /**
  * Created by 6003 on 27.12.2014.
@@ -33,7 +29,7 @@ public class GameView extends View {
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent event) {
+    public boolean onTouchEvent(@NonNull MotionEvent event) {
         return state.TouchHandle(event);
 //        return super.onTouchEvent(event);
     }

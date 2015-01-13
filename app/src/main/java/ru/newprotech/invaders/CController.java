@@ -1,6 +1,5 @@
 package ru.newprotech.invaders;
 
-import android.graphics.Point;
 import android.graphics.PointF;
 
 /**

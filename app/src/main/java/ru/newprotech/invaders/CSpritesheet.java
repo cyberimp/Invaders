@@ -1,12 +1,10 @@
 package ru.newprotech.invaders;
 
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.graphics.RectF;
-import android.util.Log;
 
 /**
  * Created by 6003 on 27.12.2014.

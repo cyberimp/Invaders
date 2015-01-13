@@ -52,8 +52,8 @@ public class CBackground implements IThinker {
     }
 
     @Override
-    public boolean Collide(RectF rect) {
-        return true;
+    public int Collide(RectF rect) {
+        return 0;
     }
 
     @Override

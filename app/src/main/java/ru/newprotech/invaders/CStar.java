@@ -29,15 +29,15 @@ public class CStar implements IThinker {
     }
 
     @Override
-    public boolean Collide(RectF rect) {
-        return false;
+    public int Collide(RectF rect) {
+        return 0;
     }
 
     @Override
     public void Die() {
         x = (float) (Math.random()*CBackground.getRectF().width());
         y = 0;
-        size = (float) (4*Math.random());
+        size = (float) (4*Math.random()+.1);
     }
 
 

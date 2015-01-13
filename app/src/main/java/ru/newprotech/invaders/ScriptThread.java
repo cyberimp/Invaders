@@ -1,14 +1,13 @@
 package ru.newprotech.invaders;
 
-import android.content.Context;
-import android.graphics.Rect;
 import android.graphics.RectF;
-
-import java.util.logging.Handler;
-import java.util.logging.LogRecord;
 
 /**
  * Created by 6003 on 12.01.2015.
+ */
+
+/**
+ * Separate thread for enemy generation
  */
 public class ScriptThread extends Thread {
     @Override
@@ -16,9 +15,10 @@ public class ScriptThread extends Thread {
         RectF rectF = CBackground.getRectF();
         try {
             //Thread body
-            while (true) {
-                CEnemyManager.createEnemy(R.drawable.skull, rectF.centerX(), -10, 0, .05f);
-                Thread.sleep(1000);
+            for (int i = 0; i < 5; i++) {
+                CEnemyManager.createEnemy(R.drawable.skull, rectF.width()+64, 64, -.05f, 0);
+                CEnemyManager.createEnemy(R.drawable.skull, -64, 128, .05f, 0);
+                Thread.sleep(2000);
             }
         } catch (InterruptedException e) {
             e.printStackTrace();

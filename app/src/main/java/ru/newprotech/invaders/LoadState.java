@@ -3,7 +3,6 @@ package ru.newprotech.invaders;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.RectF;
 import android.os.AsyncTask;
 import android.view.MotionEvent;
 

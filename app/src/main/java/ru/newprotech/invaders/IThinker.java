@@ -19,7 +19,13 @@ interface IThinker {
      * @param canvas Target canvas
      */
     public void Draw(Canvas canvas);
+
+    /**
+     * Think Method
+     * @param delta Time elapsed in milliseconds
+     * @return State of thinker
+     */
     public int Think(long delta);
-    public boolean Collide(RectF rect);
+    public int Collide(RectF rect);
     void Die();
 }

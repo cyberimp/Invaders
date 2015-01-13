@@ -129,8 +129,11 @@ public class CSprite implements IThinker {
     }
 
     @Override
-    public boolean Collide(RectF rect) {
-        return false;
+    public int Collide(RectF rect) {
+        if (rect.intersect(getRectF()))
+            return 1;
+        else
+            return 0;
     }
 
     @Override

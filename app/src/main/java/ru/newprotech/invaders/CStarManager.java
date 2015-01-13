@@ -14,6 +14,7 @@ public class CStarManager extends CThinkerManager {
     }
 
     public static void Fill(){
+        ourInstance.Clear();
         for (int i = 0; i < 100; i++) {
             CStar star= new CStar();
             ourInstance.Add(star);

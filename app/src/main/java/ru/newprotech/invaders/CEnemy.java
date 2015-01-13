@@ -1,8 +1,5 @@
 package ru.newprotech.invaders;
 
-import android.graphics.Canvas;
-import android.graphics.RectF;
-
 import java.lang.ref.WeakReference;
 
 /**
@@ -23,8 +20,8 @@ public class CEnemy extends CSpritedThinker {
         if (sprite.get() == null||dead)
             return THINKER_DEAD;
         CHeroBulletManager heroBulletManager = CHeroBulletManager.getInstance();
-        if (heroBulletManager.Collide(sprite.get().getRectF()))
-            hp--;
+        hp -= heroBulletManager.Collide(sprite.get().getRectF());
+
         if (hp <= 0) {
              Die();
              return THINKER_DEAD;
@@ -38,5 +35,12 @@ public class CEnemy extends CSpritedThinker {
         newSprite.setVx(vx);
         newSprite.setVy(vy);
         sprite = new WeakReference<>(newSprite);
+    }
+
+    @Override
+    public void Die() {
+        if (sprite.get() != null)
+            CParticleManager.createExplosion(sprite.get().getX(),sprite.get().getY());
+        super.Die();
     }
 }

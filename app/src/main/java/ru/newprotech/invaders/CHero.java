@@ -1,7 +1,6 @@
 package ru.newprotech.invaders;
 
 import android.graphics.Canvas;
-import android.graphics.Point;
 import android.graphics.PointF;
 import android.graphics.RectF;
 
@@ -67,10 +66,11 @@ public class CHero implements IThinker{
     }
 
     @Override
-    public boolean Collide(RectF rect) {
-        if (invul == 0)
-            return false;
-        return sprite.getRectF().intersect(rect);
+    public int Collide(RectF rect) {
+        if (invul > 0||!sprite.getRectF().intersect(rect))
+            return 0;
+        else
+            return 1;
     }
 
     @Override

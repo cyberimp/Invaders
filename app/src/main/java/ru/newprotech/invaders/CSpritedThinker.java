@@ -29,13 +29,10 @@ public class CSpritedThinker implements IThinker {
     }
 
     @Override
-    public boolean Collide(RectF rect) {
-        if (sprite.get()!=null) {
-            RectF temp = sprite.get().getRectF();
-            return temp.intersect(rect);
-        }
+    public int Collide(RectF rect) {
+        if (sprite.get()!=null) return sprite.get().Collide(rect);
         else
-            return false;
+            return 0;
     }
 
     @Override
@@ -45,5 +42,20 @@ public class CSpritedThinker implements IThinker {
             sprite.get().Die();
         }
 
+    }
+
+    public void setXY(float x, float y){
+        if (sprite.get()!=null)
+            sprite.get().setXY(x,y);
+    }
+
+    public void setVx(float vx){
+        if (sprite.get()!=null)
+            sprite.get().setVx(vx);
+    }
+
+    public void setVy(float vy){
+        if (sprite.get()!=null)
+            sprite.get().setVy(vy);
     }
 }
