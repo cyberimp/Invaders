@@ -1,4 +1,17 @@
 language: android
+jdk: oraclejdk7
 
 before_install:
  - chmod +x gradlew
+
+
+android:
+  components:
+    # The BuildTools version used by your project
+    - build-tools-21.0.3
+
+    # The SDK version used to compile your project
+    - android-10
+
+    # Use extra android repo locations to find the appcompat-v7:21.0.0 support library
+    - extra
