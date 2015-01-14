@@ -23,8 +23,8 @@ public class CEnemyManager extends CThinkerManager {
      * @param vy Y velocity
      * @return new enemy reference
      */
-    public static CEnemy createEnemy(int res, float x, float y, float vx, float vy){
-        CEnemy enemy = new CEnemy(res, x, y, vx, vy);
+    public static CEnemy createEnemy(int res, float x, float y, float vx, float vy, int bonus){
+        CEnemy enemy = new CEnemy(res, x, y, vx, vy, bonus);
         ourInstance.Add(enemy);
         return enemy;
     }
