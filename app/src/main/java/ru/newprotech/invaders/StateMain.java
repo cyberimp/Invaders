@@ -11,7 +11,7 @@ import android.view.MotionEvent;
 /**
  * Main game state
  */
-public class MainState implements GameState {
+public class StateMain implements IGameState {
     @Override
     public boolean TouchHandle(MotionEvent event) {
         boolean result = false;
@@ -110,7 +110,7 @@ public class MainState implements GameState {
         return 0;
     }
 
-    MainState(){
+    StateMain(){
        ScriptThread thread = new ScriptThread();
        thread.start();
     }

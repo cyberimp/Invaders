@@ -11,7 +11,7 @@ import android.view.View;
  * Created by 6003 on 27.12.2014.
  */
 public class GameView extends View {
-    private GameState state;
+    private IGameState state;
 //    CBackground back;
 //    CSpritesheetManager spritesheetManager;
 //    CSprite warship;
@@ -24,7 +24,7 @@ public class GameView extends View {
 //        warship = new CSprite(warshipSS);
 //        warship.setAnimation(100,0,3);
 //        timer = System.currentTimeMillis();
-        state = new LoadState();
+        state = new StateLoad();
 
     }
 
@@ -43,10 +43,13 @@ public class GameView extends View {
         fps.Think(delta);
         canvas.drawColor(Color.BLACK);
         switch (state.Think(delta)){
-            case GameState.STATE_SAME:
+            case IGameState.STATE_SAME:
                 break;
-            case GameState.STATE_MAIN:
-                state = new MainState();
+            case IGameState.STATE_MAIN:
+                state = new StateMain();
+                break;
+            case IGameState.STATE_MENU:
+                state = new StateMenu();
                 break;
         }
         state.Draw(canvas);

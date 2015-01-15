@@ -1,20 +1,29 @@
 package ru.newprotech.invaders;
 
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.RectF;
 import android.os.AsyncTask;
+import android.view.Display;
 import android.view.MotionEvent;
+import android.view.WindowManager;
 
 /**
  * Created by kinzoxbeato on 28.12.2014.
  */
-public class LoadState implements GameState {
+
+/**
+ * State for loading images and stuff
+ */
+public class StateLoad implements IGameState {
 
     private int TextAlpha;
     private int AlphaSpeed;
     private LoadingTask loadingTask;
     private Float Progress;
+    private RectF Screen;
 
     @Override
     public boolean TouchHandle(MotionEvent event) {
@@ -29,7 +38,7 @@ public class LoadState implements GameState {
         paint.setTextAlign(Paint.Align.CENTER);
         paint.setColor(Color.WHITE);
         paint.setAlpha(TextAlpha);
-        canvas.drawText("LOADING", 170, 240, paint);
+        canvas.drawText("LOADING", Screen.centerX(), Screen.centerY(), paint);
         paint.setAlpha(255);
         paint.setStrokeWidth(3);
         canvas.drawRect(100, 270, 240, 290, paint);
@@ -51,16 +60,21 @@ public class LoadState implements GameState {
             AlphaSpeed = 1;
         }
         if (loadingTask.getStatus() == AsyncTask.Status.FINISHED)
-            return GameState.STATE_MAIN;
+            return IGameState.STATE_MENU;
         else
-            return GameState.STATE_SAME;
+            return IGameState.STATE_SAME;
     }
 
-    public LoadState() {
+    public StateLoad() {
         TextAlpha = 255;
         AlphaSpeed = -1;
         Progress = new Float(0.f);
         loadingTask = new LoadingTask();
         loadingTask.execute(Progress);
+        GameContext gameContext = GameContext.getInstance();
+        WindowManager wm = (WindowManager) gameContext.getSystemService(Context.WINDOW_SERVICE);
+        Display display = wm.getDefaultDisplay();
+        Screen = new RectF(0,0,display.getWidth(),display.getHeight());
+
     }
 }

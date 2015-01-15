@@ -10,12 +10,12 @@ import android.view.MotionEvent;
 /**
  * Abstract game state
  */
-interface GameState{
+interface IGameState {
     static int STATE_SAME = 0;
     static int STATE_LOADING = 1;
-    static int STATE_MENU = 3;
+    static int STATE_MENU = 2;
     static int STATE_MAIN = 3;
-    static int STATE_GAMEOVER = 3;
+    static int STATE_GAMEOVER = 4;
 
     /**
      * Draws needed elements on screen (View layer)

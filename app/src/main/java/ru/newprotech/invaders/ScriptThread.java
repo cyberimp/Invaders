@@ -20,6 +20,12 @@ public class ScriptThread extends Thread {
                 CEnemyManager.createEnemy(R.drawable.skull, -64, 128, .05f, 0, 0);
                 Thread.sleep(2000);
             }
+            Thread.sleep(10000);
+            for (int i = 0; i < 5; i++) {
+                CEnemyManager.createEnemy(R.drawable.skull, -64, 64, .05f, 0, 1);
+                CEnemyManager.createEnemy(R.drawable.skull, rectF.width()+64, 128, -.05f, 0, 0);
+                Thread.sleep(2000);
+            }
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
