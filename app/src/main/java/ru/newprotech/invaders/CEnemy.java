@@ -1,5 +1,7 @@
 package ru.newprotech.invaders;
 
+import android.graphics.Color;
+
 import java.lang.ref.WeakReference;
 
 /**
@@ -31,6 +33,16 @@ public class CEnemy extends CSpritedThinker {
             return 0;
     }
 
+    /**
+     * Creating enemy.
+     * You should use {@link ru.newprotech.invaders.CEnemyManager#createEnemy(int, float, float, float, float, int)}
+     * @param res Spritesheet resource ID
+     * @param x X coord
+     * @param y Y coord
+     * @param vx X speed
+     * @param vy Y speed
+     * @param bonus Bonus ID
+     */
     public CEnemy(int res, float x, float y, float vx, float vy, int bonus){
         CSprite newSprite = CSpriteManager.createSprite(res, x, y);
         newSprite.setVx(vx);
@@ -42,10 +54,11 @@ public class CEnemy extends CSpritedThinker {
     @Override
     public void Die() {
         if (sprite.get() != null) {
-            CParticleManager.createExplosion(sprite.get().getX(), sprite.get().getY());
+            CParticleManager.createExplosion(getX(), getY(), Color.WHITE);
             if (bonus>0)
-                CBonusManager.createBonus(sprite.get().getX(), sprite.get().getY());
+                CBonusManager.createBonus(getX(), getY());
         }
         super.Die();
     }
+
 }

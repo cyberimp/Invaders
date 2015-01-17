@@ -49,6 +49,22 @@ public class CSpritedThinker implements IThinker {
             sprite.get().setXY(x,y);
     }
 
+    public float getX(){
+        if (sprite.get()!=null)
+            return sprite.get().getX();
+        else
+            return 0;
+
+    }
+
+    public float getY(){
+        if (sprite.get()!=null)
+            return sprite.get().getY();
+        else
+            return 0;
+
+    }
+
     public void setVx(float vx){
         if (sprite.get()!=null)
             sprite.get().setVx(vx);

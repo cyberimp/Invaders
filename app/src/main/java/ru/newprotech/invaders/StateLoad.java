@@ -41,9 +41,13 @@ public class StateLoad implements IGameState {
         canvas.drawText("LOADING", Screen.centerX(), Screen.centerY(), paint);
         paint.setAlpha(255);
         paint.setStrokeWidth(3);
-        canvas.drawRect(100, 270, 240, 290, paint);
+//        canvas.drawRect(100, 270, 240, 290, paint);
+        canvas.drawRect(Screen.centerX()-70, Screen.centerY()+32, Screen.centerX()+70, Screen.centerY()+52, paint);
         paint.setStyle(Paint.Style.FILL_AND_STROKE);
-        canvas.drawRect(105,275,235+(235.f-105.f)/100.f*Progress,285,paint);
+//        canvas.drawRect(105,275,235+(235.f-105.f)/100.f*Progress,285,paint);
+        canvas.drawRect(Screen.centerX()-65, Screen.centerY()+37,
+                Screen.centerX()-65+130.f/100.f*Progress,
+                Screen.centerY()+47, paint);
 
 
     }
