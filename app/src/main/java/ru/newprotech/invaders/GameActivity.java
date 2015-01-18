@@ -19,8 +19,23 @@ public class GameActivity extends ActionBarActivity {
         cont.setCont(this.getApplicationContext());
         GameView gameView = new GameView(this);
         setContentView(gameView);
+        GameState state = GameState.getInstance();
+        state.init();
     }
 
+    @Override
+    protected void onPause() {
+        GameState state = GameState.getInstance();
+        state.pause();
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        GameState state = GameState.getInstance();
+        state.resume();
+        super.onResume();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
