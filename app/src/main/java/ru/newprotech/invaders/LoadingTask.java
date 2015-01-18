@@ -3,6 +3,7 @@ package ru.newprotech.invaders;
 import android.content.Context;
 import android.graphics.RectF;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.view.Display;
 import android.view.WindowManager;
 

@@ -15,6 +15,8 @@ public class GameState implements IGameState {
     private static IGameState state;
     private static IGameState prev_state=null;
 
+    private ScriptThread thread;
+
     public static GameState getInstance() {
         return ourInstance;
     }
@@ -24,7 +26,12 @@ public class GameState implements IGameState {
     
 
     public void init(){
+        if (thread!= null)
+            thread.interrupt();
+        else
+            thread = new ScriptThread();
         state = new StateLoad();
+        prev_state = null;
     }
     
     @Override
@@ -68,5 +75,15 @@ public class GameState implements IGameState {
             state = prev_state;
         GlobalTimer timer = GlobalTimer.getInstance();
         timer.start();
+    }
+
+    public void start_thread(){
+        if (thread.getState()!= Thread.State.NEW)
+        {
+            thread.interrupt();
+            thread = new ScriptThread();
+        }
+        thread.start();
+
     }
 }

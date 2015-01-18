@@ -11,18 +11,22 @@ import android.graphics.RectF;
  */
 public class ScriptThread extends Thread {
 
-    public static Object monitor = new Object();
-    private static ScriptThread ourInstance = new ScriptThread();
+    public static final Object monitor = new Object();
 
-    public static ScriptThread getInstance() {
-        return ourInstance;
-    }
-
-    private void timerWait (long millis) throws InterruptedException {
+    /**
+     * Asks timer to wait for given time or more
+     * @param millis Time to wait in millis
+     * @throws InterruptedException
+     */
+    private void timerWait (long millis) throws InterruptedException{
         GlobalTimer timer = GlobalTimer.getInstance();
         synchronized (monitor) {
             timer.setWakeup(millis);
-            monitor.wait();
+//            try {
+                monitor.wait();
+//            } catch (InterruptedException e) {
+//                throw e;
+//            }
         }
     }
 
@@ -43,6 +47,7 @@ public class ScriptThread extends Thread {
                 timerWait(2000);
             }
         } catch (InterruptedException e) {
+            this.interrupt();
             e.printStackTrace();
         }
     }

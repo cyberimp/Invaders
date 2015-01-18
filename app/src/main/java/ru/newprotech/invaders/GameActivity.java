@@ -11,10 +11,6 @@ public class GameActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_game);
-//        requestWindowFeature(Window.FEATURE_NO_TITLE);
-//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-//                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         GameContext cont = GameContext.getInstance();
         cont.setCont(this.getApplicationContext());
         GameView gameView = new GameView(this);
@@ -24,17 +20,37 @@ public class GameActivity extends ActionBarActivity {
     }
 
     @Override
+    protected void onRestart() {
+        super.onRestart();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        GameState state = GameState.getInstance();
+//        state.init();
+        state.resume();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+//        ScriptThread thread = ScriptThread.getInstance();
+//        thread.interrupt();
+    }
+
+    @Override
     protected void onPause() {
+        super.onPause();
         GameState state = GameState.getInstance();
         state.pause();
-        super.onPause();
     }
 
     @Override
     protected void onResume() {
+        super.onResume();
         GameState state = GameState.getInstance();
         state.resume();
-        super.onResume();
     }
 
     @Override

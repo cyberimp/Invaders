@@ -12,9 +12,9 @@ public class GlobalTimer {
         return ourInstance;
     }
     public long getDelta(){
-//        ScriptThread thread = ScriptThread.getInstance();
             long result = System.currentTimeMillis() - lastCheck;
-//        lastCheck = SystemClock.currentThreadTimeMillis();
+            if (!running)
+                result = 0;
             lastCheck = System.currentTimeMillis();
             if (threadTimer > 0) {
                 threadTimer -= result;
@@ -23,15 +23,13 @@ public class GlobalTimer {
                         ScriptThread.monitor.notify();
                     }
             }
-            if (running)
-                return result;
-            else
-                return 0;
+            return result;
         }
 
     public void start(){
+        if (!running)
+            lastCheck = System.currentTimeMillis();
         running = true;
-        lastCheck = System.currentTimeMillis();
     }
     public void stop(){
         running = false;

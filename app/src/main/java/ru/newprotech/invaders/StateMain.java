@@ -111,7 +111,8 @@ public class StateMain implements IGameState {
     }
 
     StateMain(){
-       ScriptThread thread = ScriptThread.getInstance();
-       thread.start();
+        GameState state = GameState.getInstance();
+        state.start_thread();
+//        if (thread.getState() == Thread.State.NEW  || thread.getState() == Thread.State.RUNNABLE)
     }
 }
