@@ -81,12 +81,18 @@ public class StateMain implements IGameState {
     @Override
     public void Draw(Canvas canvas) {
         CBackground back = CBackground.getInstance();
-        CSpriteManager spriteManager = CSpriteManager.getInstance();
+//        CSpriteManager spriteManager = CSpriteManager.getInstance();
+        CEnemyManager enemyManager = CEnemyManager.getInstance();
+        CHeroBulletManager heroBulletManager = CHeroBulletManager.getInstance();
         CParticleManager particleManager = CParticleManager.getInstance();
+        CBonusManager bonusManager = CBonusManager.getInstance();
         CHero hero = CHero.getInstance();
         back.Draw(canvas);
-        spriteManager.Draw(canvas);
         particleManager.Draw(canvas);
+        heroBulletManager.Draw(canvas);
+        bonusManager.Draw(canvas);
+        enemyManager.Draw(canvas);
+//        spriteManager.Draw(canvas);
         hero.Draw(canvas);
 
     }
