@@ -3,6 +3,7 @@ package ru.newprotech.invaders;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
 
@@ -28,7 +29,7 @@ public class CSpritesheet {
         frames_count = sheet.getHeight()/frame_y*row_size;
     }
 
-    public void Draw(Canvas canvas,int frame_no,float x,float y){
+    public void Draw(Canvas canvas,int frame_no,float x,float y,Paint paint){
         if (frame_no > frames_count)
             return;
         RectF dstRect = new RectF();
@@ -39,6 +40,6 @@ public class CSpritesheet {
         int srcX = frame_no%row_size;
         int srcY = frame_no/row_size;
         srcRect.set(srcX*frame_x,srcY*frame_y,(srcX+1)*frame_x,(srcY+1)*frame_y);
-        canvas.drawBitmap(sheet,srcRect,dstRect,null);
+        canvas.drawBitmap(sheet,srcRect,dstRect,paint);
     }
 }

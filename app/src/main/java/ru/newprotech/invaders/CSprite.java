@@ -1,6 +1,7 @@
 package ru.newprotech.invaders;
 
 import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.graphics.RectF;
 
 /**
@@ -16,6 +17,9 @@ public class CSprite implements IThinker {
     private int frame;
     private boolean dead=false;
     private CSpritesheet spritesheet;
+    private boolean blinking = false;
+    float blinkAlpha = 255;
+    float alphaSpeed = -1f;
 
     CSprite(CSpritesheet spritesheet) {
         frame = 0;
@@ -97,12 +101,25 @@ public class CSprite implements IThinker {
     public void Draw(Canvas canvas) {
         canvas.save();
         canvas.rotate(phi,x,y);
-        spritesheet.Draw(canvas,frame,x,y);
+        Paint paint = new Paint();
+        paint.setAlpha((int) blinkAlpha);
+        spritesheet.Draw(canvas,frame,x,y,paint);
         canvas.restore();
     }
 
     @Override
     public int Think(long delta) {
+        if(blinking)
+            blinkAlpha+=(float)delta*alphaSpeed;
+        if (blinkAlpha<0.f){
+            blinkAlpha = 0.f;
+            alphaSpeed = 1f;
+        }
+        if( blinkAlpha>255.f){
+            blinkAlpha = 255.f;
+            alphaSpeed = -1f;
+        }
+
         x+=vx*delta;
         y+=vy*delta;
         phi+=vphi*delta;
@@ -157,6 +174,12 @@ public class CSprite implements IThinker {
     }
 
     public void startBlink() {
+        blinking = true;
 
+    }
+
+    public void stopBlink() {
+        blinking = false;
+        blinkAlpha = 255;
     }
 }

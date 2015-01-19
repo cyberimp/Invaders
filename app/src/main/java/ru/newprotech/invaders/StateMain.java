@@ -113,6 +113,8 @@ public class StateMain implements IGameState {
     StateMain(){
         GameState state = GameState.getInstance();
         state.start_thread();
+        CHero hero = CHero.getInstance();
+        hero.init();
 //        if (thread.getState() == Thread.State.NEW  || thread.getState() == Thread.State.RUNNABLE)
     }
 }

@@ -1,8 +1,11 @@
 package ru.newprotech.invaders;
 
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.PointF;
 import android.graphics.RectF;
+import android.view.Display;
+import android.view.WindowManager;
 
 /**
  * Created by kinzoxbeato on 28.12.2014.
@@ -33,6 +36,14 @@ public class CHero implements IThinker{
 
     @Override
     public int Think(long delta) {
+        if (invul >0){
+            invul -= delta;
+            if (invul<0) {
+                invul = 0;
+                sprite.stopBlink();
+            }
+        }
+
         CController controller = CController.getInstance();
         if (controller.isMove()){
             PointF point = controller.getMoveHere();
@@ -75,8 +86,7 @@ public class CHero implements IThinker{
 
     @Override
     public void Die() {
-        invul = 1000;
-        sprite.startBlink();
+        init();
     }
 
     public void startAnimation(int delay, int start, int end){
@@ -105,7 +115,13 @@ public class CHero implements IThinker{
     }
 
     public void init() {
-        invul = 1000;
+        GameContext gameContext = GameContext.getInstance();
+        WindowManager wm = (WindowManager) gameContext.getSystemService(Context.WINDOW_SERVICE);
+        Display display = wm.getDefaultDisplay();
+
+        invul = 2000;
         weapon.init();
+        sprite.setXY(display.getWidth() / 2, display.getHeight() - 64);
+        sprite.startBlink();
     }
 }
