@@ -23,7 +23,12 @@ public class CEnemy extends CSpritedThinker {
         if (sprite.get() == null||dead)
             return THINKER_DEAD;
         CHeroBulletManager heroBulletManager = CHeroBulletManager.getInstance();
-        hp -= heroBulletManager.Collide(sprite.get().getRectF());
+        hp -= heroBulletManager.Collide(getRectF());
+        CHero hero = CHero.getInstance();
+        if (!hero.isInvul() && hero.Collide(getRectF()) > 0) {
+            hp -= 5;
+            hero.Die();
+        }
 
         if (hp <= 0) {
              Die();

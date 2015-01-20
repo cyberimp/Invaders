@@ -2,6 +2,7 @@ package ru.newprotech.invaders;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.PointF;
 import android.graphics.RectF;
 import android.view.Display;
@@ -86,6 +87,7 @@ public class CHero implements IThinker{
 
     @Override
     public void Die() {
+        CParticleManager.createExplosion(getX(),getY(), Color.WHITE);
         init();
     }
 
@@ -119,9 +121,13 @@ public class CHero implements IThinker{
         WindowManager wm = (WindowManager) gameContext.getSystemService(Context.WINDOW_SERVICE);
         Display display = wm.getDefaultDisplay();
 
-        invul = 2000;
+        invul = 3000;
         weapon.init();
         sprite.setXY(display.getWidth() / 2, display.getHeight() - 64);
         sprite.startBlink();
+    }
+
+    public boolean isInvul() {
+        return (invul>0);
     }
 }
