@@ -33,6 +33,7 @@ class LoadingTask extends AsyncTask<Float,Integer,Void> {
         ssManager.loadSheet(R.drawable.warship, 32, 32);
         ssManager.loadSheet(R.drawable.bullet,8,8);
         ssManager.loadSheet(R.drawable.lightning,8,8);
+        ssManager.loadSheet(R.drawable.numbers,8,8);
         ssManager.loadSheet(R.drawable.skull,64,64);
         ssManager.loadSheet(R.drawable.grunt,64,64);
         ssManager.loadSheet(R.drawable.power,16,16);

@@ -11,7 +11,7 @@ public class CEnemyBullet extends CSpritedThinker{
         int result = super.Think(delta);
         if (result==0){
             CHero hero = CHero.getInstance();
-            if (hero.Collide(this.getRectF())!=0) {
+            if (!hero.isInvul() && hero.Collide(this.getRectF())!=0) {
                 hero.Die();
                 sprite.get().Die();
                 result = THINKER_DEAD;

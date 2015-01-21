@@ -1,6 +1,7 @@
 package ru.newprotech.invaders;
 
 import android.graphics.RectF;
+import android.util.Log;
 
 import java.util.List;
 import java.util.Vector;
@@ -60,8 +61,9 @@ public class ScriptThread extends Thread {
                     enemy.Shoot();
             }
         } catch (InterruptedException e) {
-            this.interrupt();
             e.printStackTrace();
+            Log.d("thread","Thread ended");
+            this.interrupt();
         }
     }
 
