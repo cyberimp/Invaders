@@ -87,8 +87,10 @@ public class StateMain implements IGameState {
         CParticleManager particleManager = CParticleManager.getInstance();
         CBonusManager bonusManager = CBonusManager.getInstance();
         CHero hero = CHero.getInstance();
+        CEnemyBulletManager enemyBulletManager = CEnemyBulletManager.getInstance();
         back.Draw(canvas);
         particleManager.Draw(canvas);
+        enemyBulletManager.Draw(canvas);
         heroBulletManager.Draw(canvas);
         bonusManager.Draw(canvas);
         enemyManager.Draw(canvas);
@@ -106,6 +108,7 @@ public class StateMain implements IGameState {
         CHeroBulletManager bulletManager = CHeroBulletManager.getInstance();
         CBonusManager bonusManager = CBonusManager.getInstance();
         CParticleManager particleManager = CParticleManager.getInstance();
+        CEnemyBulletManager enemyBulletManager = CEnemyBulletManager.getInstance();
         back.Think(delta);
         hero.Think(delta);
         bonusManager.Think(delta);
@@ -113,6 +116,7 @@ public class StateMain implements IGameState {
         enemyManager.Think(delta);
         bulletManager.Think(delta);
         particleManager.Think(delta);
+        enemyBulletManager.Think(delta);
         return 0;
     }
 

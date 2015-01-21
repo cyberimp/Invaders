@@ -66,4 +66,12 @@ public class CEnemy extends CSpritedThinker {
         super.Die();
     }
 
+    public CEnemyBullet Shoot(){
+        if (!dead) {
+            CEnemyBullet result = CEnemyBulletManager.createBullet(getX(), getY());
+            return result;
+        }
+        else return null;
+    }
+
 }
