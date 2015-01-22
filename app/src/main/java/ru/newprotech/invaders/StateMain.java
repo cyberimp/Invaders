@@ -79,58 +79,33 @@ public class StateMain implements IGameState {
     }
 
     @Override
+    public int getState() {
+        return STATE_MAIN;
+    }
+
+    @Override
     public void Draw(Canvas canvas) {
-        CBackground back = CBackground.getInstance();
-//        CSpriteManager spriteManager = CSpriteManager.getInstance();
-        CEnemyManager enemyManager = CEnemyManager.getInstance();
-        CHeroBulletManager heroBulletManager = CHeroBulletManager.getInstance();
-        CParticleManager particleManager = CParticleManager.getInstance();
-        CBonusManager bonusManager = CBonusManager.getInstance();
-        CHero hero = CHero.getInstance();
-        CEnemyBulletManager enemyBulletManager = CEnemyBulletManager.getInstance();
-        CScoreManager scoreManager = CScoreManager.getInstance();
 
-        back.Draw(canvas);
-        particleManager.Draw(canvas);
-        enemyBulletManager.Draw(canvas);
-        heroBulletManager.Draw(canvas);
-        bonusManager.Draw(canvas);
-        enemyManager.Draw(canvas);
-//        spriteManager.Draw(canvas);
-        hero.Draw(canvas);
-        scoreManager.Draw(canvas);
-
+        CGameManager gameManager = CGameManager.getInstance();
+        gameManager.Draw(canvas);
     }
 
     @Override
     public int Think(long delta) {
-        CBackground back = CBackground.getInstance();
         CSpriteManager spriteManager = CSpriteManager.getInstance();
-        CHero hero = CHero.getInstance();
-        CEnemyManager enemyManager = CEnemyManager.getInstance();
-        CHeroBulletManager bulletManager = CHeroBulletManager.getInstance();
-        CBonusManager bonusManager = CBonusManager.getInstance();
-        CParticleManager particleManager = CParticleManager.getInstance();
-        CEnemyBulletManager enemyBulletManager = CEnemyBulletManager.getInstance();
-        CScoreManager scoreManager = CScoreManager.getInstance();
-
-        back.Think(delta);
-        hero.Think(delta);
-        bonusManager.Think(delta);
+        CGameManager gameManager = CGameManager.getInstance();
         spriteManager.Think(delta);
-        enemyManager.Think(delta);
-        bulletManager.Think(delta);
-        particleManager.Think(delta);
-        enemyBulletManager.Think(delta);
-        scoreManager.Think(delta);
+        gameManager.Think(delta);
         return 0;
     }
 
     StateMain(){
-        GameState state = GameState.getInstance();
-        state.start_thread();
         CHero hero = CHero.getInstance();
+        GameState state = GameState.getInstance();
+        CGameManager gameManager = CGameManager.getInstance();
+        gameManager.Clear();
         hero.init();
+        state.start_thread();
 //        if (thread.getState() == Thread.State.NEW  || thread.getState() == Thread.State.RUNNABLE)
     }
 }

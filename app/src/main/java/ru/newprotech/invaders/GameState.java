@@ -49,6 +49,11 @@ public class GameState implements IGameState {
         return state.TouchHandle(event);
     }
 
+    @Override
+    public int getState() {
+        return state.getState();
+    }
+
     public void change(int new_state) {
         switch (new_state){
             case IGameState.STATE_SAME:

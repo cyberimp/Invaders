@@ -13,8 +13,8 @@ public class CEnemyBulletManager extends CThinkerManager {
     private CEnemyBulletManager() {
     }
 
-    public static CEnemyBullet createBullet(float x,float y){
-        CEnemyBullet bullet = new CEnemyBullet(x,y);
+    public static CEnemyBullet createBullet(float x, float y, float v, int a){
+        CEnemyBullet bullet = new CEnemyBullet(x,y, v, a);
         ourInstance.Add(bullet);
         return bullet;
     }

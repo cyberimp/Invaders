@@ -32,6 +32,11 @@ public class StateLoad implements IGameState {
     }
 
     @Override
+    public int getState() {
+        return STATE_LOADING;
+    }
+
+    @Override
     public void Draw(Canvas canvas) {
         Paint paint=new Paint();
         paint.setStyle(Paint.Style.STROKE);

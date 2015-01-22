@@ -120,10 +120,12 @@ public class CHero implements IThinker{
         GameContext gameContext = GameContext.getInstance();
         WindowManager wm = (WindowManager) gameContext.getSystemService(Context.WINDOW_SERVICE);
         Display display = wm.getDefaultDisplay();
-
+        CController controller = CController.getInstance();
+        controller.halt();
         invul = 3000;
         weapon.init();
         sprite.setXY(display.getWidth() / 2, display.getHeight() - 64);
+        sprite.setPhi(0);
         sprite.startBlink();
     }
 

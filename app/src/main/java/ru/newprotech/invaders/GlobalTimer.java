@@ -16,13 +16,11 @@ public class GlobalTimer {
             if (!running)
                 result = 0;
             lastCheck = System.currentTimeMillis();
-            if (threadTimer > 0) {
                 threadTimer -= result;
                 if (threadTimer < 0)
                     synchronized (ScriptThread.monitor) {
                         ScriptThread.monitor.notify();
                     }
-            }
             return result;
         }
 

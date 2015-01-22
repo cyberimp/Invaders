@@ -74,4 +74,13 @@ public class GameActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    public void onBackPressed() {
+        GameState state = GameState.getInstance();
+        if (state.getState() == IGameState.STATE_LOADING || state.getState() == IGameState.STATE_MENU)
+            super.onBackPressed();
+        else
+            state.change(IGameState.STATE_MENU);
+    }
 }

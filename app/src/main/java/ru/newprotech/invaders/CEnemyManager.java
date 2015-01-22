@@ -21,10 +21,12 @@ public class CEnemyManager extends CThinkerManager {
      * @param y Y coordinate of enemy
      * @param vx X velocity
      * @param vy Y velocity
+     * @param hp Hit points
+     * @param score Score value
      * @return new enemy reference
      */
-    public static CEnemy createEnemy(int res, float x, float y, float vx, float vy, int bonus){
-        CEnemy enemy = new CEnemy(res, x, y, vx, vy, bonus);
+    public static CEnemy createEnemy(int res, float x, float y, float vx, float vy, int bonus, int hp, int score){
+        CEnemy enemy = new CEnemy(res, x, y, vx, vy, bonus, hp, score);
         ourInstance.Add(enemy);
         return enemy;
     }

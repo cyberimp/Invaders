@@ -3,7 +3,6 @@ package ru.newprotech.invaders;
 import android.graphics.RectF;
 import android.util.Log;
 
-import java.util.List;
 import java.util.Vector;
 
 /**
@@ -42,9 +41,9 @@ public class ScriptThread extends Thread {
             CEnemy temp;
             //Thread body
             for (int i = 0; i < 5; i++) {
-                temp = CEnemyManager.createEnemy(R.drawable.skull, rectF.width()+64, 64, -.05f, 0, 1);
+                temp = CEnemyManager.createEnemy(R.drawable.skull, rectF.width()+64, 64, -.05f, 0, 1, 10, 100);
                 a.add(temp);
-                temp = CEnemyManager.createEnemy(R.drawable.skull, -64, 128, .05f, 0, 0);
+                temp = CEnemyManager.createEnemy(R.drawable.skull, -64, 128, .05f, 0, 0, 10, 100);
                 a.add(temp);
                 timerWait(2000);
                 for(CEnemy enemy:a)
@@ -52,9 +51,9 @@ public class ScriptThread extends Thread {
             }
             timerWait(10000);
             for (int i = 0; i < 5; i++) {
-                temp = CEnemyManager.createEnemy(R.drawable.grunt, -64, 64, .05f, 0, 1);
+                temp = CEnemyManager.createEnemy(R.drawable.grunt, -64, 64, .05f, 0, 1, 10, 100);
                 a.add(temp);
-                temp = CEnemyManager.createEnemy(R.drawable.grunt, rectF.width()+64, 128, -.05f, 0, 0);
+                temp = CEnemyManager.createEnemy(R.drawable.grunt, rectF.width()+64, 128, -.05f, 0, 0, 10, 100);
                 a.add(temp);
                 timerWait(2000);
                 for(CEnemy enemy:a)

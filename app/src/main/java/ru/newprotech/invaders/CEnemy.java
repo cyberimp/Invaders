@@ -17,6 +17,7 @@ public class CEnemy extends CSpritedThinker {
      */
     int hp = 10;
     int bonus;
+    int score;
 
     @Override
     public int Think(long delta) {
@@ -40,20 +41,24 @@ public class CEnemy extends CSpritedThinker {
 
     /**
      * Creating enemy.
-     * You should use {@link ru.newprotech.invaders.CEnemyManager#createEnemy(int, float, float, float, float, int)}
+     * You should use {@link CEnemyManager#createEnemy(int, float, float, float, float, int, int, int)}
      * @param res Spritesheet resource ID
      * @param x X coord
      * @param y Y coord
      * @param vx X speed
      * @param vy Y speed
      * @param bonus Bonus ID
+     * @param hp hit points
+     * @param score score value of enemy
      */
-    public CEnemy(int res, float x, float y, float vx, float vy, int bonus){
+    public CEnemy(int res, float x, float y, float vx, float vy, int bonus, int hp, int score){
         CSprite newSprite = CSpriteManager.createSprite(res, x, y);
         newSprite.setVx(vx);
         newSprite.setVy(vy);
         sprite = new WeakReference<>(newSprite);
         this.bonus = bonus;
+        this.hp = hp;
+        this.score = score;
     }
 
     @Override
@@ -62,15 +67,14 @@ public class CEnemy extends CSpritedThinker {
             CParticleManager.createExplosion(getX(), getY(), Color.WHITE);
             if (bonus>0)
                 CBonusManager.createBonus(getX(), getY());
-            CScoreManager.createScore(getX(),getY(),100);
+            CScoreManager.createScore(getX(),getY(),score);
         }
         super.Die();
     }
 
     public CEnemyBullet Shoot(){
         if (!dead) {
-            CEnemyBullet result = CEnemyBulletManager.createBullet(getX(), getY());
-            return result;
+            return CEnemyBulletManager.createBullet(getX(), getY(), 0.2f, 0);
         }
         else return null;
     }

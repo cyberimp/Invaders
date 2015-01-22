@@ -36,4 +36,9 @@ public class StateMenu implements IGameState {
         }
         return false;
     }
+
+    @Override
+    public int getState() {
+        return STATE_MENU;
+    }
 }
