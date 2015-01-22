@@ -103,6 +103,8 @@ public class StateMain implements IGameState {
         CHero hero = CHero.getInstance();
         GameState state = GameState.getInstance();
         CGameManager gameManager = CGameManager.getInstance();
+        CSpriteManager spriteManager = CSpriteManager.getInstance();
+        spriteManager.Clear();
         gameManager.Clear();
         hero.init();
         state.start_thread();

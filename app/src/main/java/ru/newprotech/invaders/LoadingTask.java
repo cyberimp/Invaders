@@ -18,8 +18,9 @@ class LoadingTask extends AsyncTask<Float,Integer,Void> {
     @Override
     protected Void doInBackground(Float... params) {
 //        back = new CBackground(R.drawable.nebula,display.getWidth(),display.getHeight());
-        CSpriteManager.init();
-        CHeroBulletManager.init();
+        CSpriteManager spriteManager=CSpriteManager.getInstance();
+        spriteManager.Clear();
+//        CHeroBulletManager.init();
         params[0] = 0.f;
         GameContext gameContext = GameContext.getInstance();
         CBackground back = CBackground.getInstance();

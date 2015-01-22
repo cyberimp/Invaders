@@ -34,7 +34,13 @@ public class CSpriteManager extends CThinkerManager {
     private CSpriteManager() {
         this.collection = new Vector<>();
     }
-    public static void init(){
-        ourInstance.collection = new Vector<>();
+
+    @Override
+    public void Die() {
+        CHero hero = CHero.getInstance();
+        CSprite heroSprite= hero.getSprite();
+        this.Clear();
+        Add(heroSprite);
     }
+
 }

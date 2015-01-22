@@ -73,7 +73,7 @@ public class CHero implements IThinker{
         }
         else
             sprite.stopRotate();
-//        sprite.Think(delta);
+        sprite.Think(delta);
         return 0;
     }
 
@@ -131,5 +131,9 @@ public class CHero implements IThinker{
 
     public boolean isInvul() {
         return (invul>0);
+    }
+
+    public CSprite getSprite() {
+        return sprite;
     }
 }
