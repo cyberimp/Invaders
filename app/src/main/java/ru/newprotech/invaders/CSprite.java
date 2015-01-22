@@ -21,7 +21,7 @@ public class CSprite implements IThinker {
     float blinkAlpha = 255;
     float alphaSpeed = -1f;
 
-    CSprite(CSpritesheet spritesheet) {
+    private CSprite(CSpritesheet spritesheet) {
         frame = 0;
         x = 160;
         y = 240;
@@ -32,6 +32,23 @@ public class CSprite implements IThinker {
         endFrame = 0;
         phi =0;
         vphi=0;
+    }
+
+    /**
+     * Static factory method, creating new sprite
+     * @param res Spritesheet resource ID
+     * @param x X coordinate for sprite
+     * @param y Y coordinate for sprite
+     * @return Sprite reference to mess with
+     */
+    static CSprite createSprite(int res,float x, float y) {
+        CSpritesheetManager spritesheetManager = CSpritesheetManager.getInstance();
+        CSprite temp=new CSprite(spritesheetManager.getSheet(res));
+        temp.setXY(x,y);
+        if (CSpriteManager.getInstance().Add(temp))
+            return temp;
+        else
+            return null;
     }
 
     public float getPhi() {

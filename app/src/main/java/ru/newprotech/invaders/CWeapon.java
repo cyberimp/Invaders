@@ -11,12 +11,12 @@ public class CWeapon {
     public void Think(long delta){
         if (weaponTemp == 0){
             CHero hero = CHero.getInstance();
-            CHeroBulletManager.createBullet(R.drawable.bullet,hero.getPhi()-90,.2f,
+            CHeroBullet.createBullet(R.drawable.bullet,hero.getPhi()-90,.2f,
                     hero.getX(),hero.getY());
             for (int i = 0; i < power; i++) {
-                CHeroBulletManager.createBullet(R.drawable.bullet,hero.getPhi()-90 - i*2,.2f,
+                CHeroBullet.createBullet(R.drawable.bullet,hero.getPhi()-90 - i*2,.2f,
                         hero.getX(),hero.getY());
-                CHeroBulletManager.createBullet(R.drawable.bullet,hero.getPhi()-90 + i*2,.2f,
+                CHeroBullet.createBullet(R.drawable.bullet,hero.getPhi()-90 + i*2,.2f,
                         hero.getX(),hero.getY());
             }
         }

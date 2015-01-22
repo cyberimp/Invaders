@@ -6,6 +6,13 @@ import java.lang.ref.WeakReference;
  * Created by 6003 on 21.01.2015.
  */
 public class CEnemyBullet extends CSpritedThinker{
+    static CEnemyBullet createBullet(float x, float y, float v, int a) {
+        CEnemyBullet bullet =  new CEnemyBullet(x, y, v, a);
+        CEnemyBulletManager bulletManager = CEnemyBulletManager.getInstance();
+        bulletManager.Add(bullet);
+        return bullet;
+    }
+
     @Override
     public int Think(long delta) {
         int result = super.Think(delta);
@@ -20,9 +27,9 @@ public class CEnemyBullet extends CSpritedThinker{
         return result;
     }
 
-    CEnemyBullet(float x, float y, float v, int a){
-        CSprite newSprite = CSpriteManager.createSprite(R.drawable.lightning, x, y);
-        newSprite.setAnimation(500,0,1);
+    private CEnemyBullet(float x, float y, float v, int a){
+        CSprite newSprite = CSprite.createSprite(R.drawable.lightning, x, y);
+        newSprite.setAnimation(500, 0, 1);
         newSprite.setVx((float) (v * Math.cos(Math.toRadians(a + 90))));
         newSprite.setVy((float) (v * Math.sin(Math.toRadians(a + 90))));
         sprite = new WeakReference<>(newSprite);

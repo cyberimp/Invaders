@@ -11,14 +11,6 @@ public class CGameManager extends CThinkerManager {
     }
 
     private CGameManager() {
-//        back.Draw(canvas);
-//        particleManager.Draw(canvas);
-//        enemyBulletManager.Draw(canvas);
-//        heroBulletManager.Draw(canvas);
-//        bonusManager.Draw(canvas);
-//        enemyManager.Draw(canvas);
-//        hero.Draw(canvas);
-//        scoreManager.Draw(canvas);
         Add(CBackground.getInstance());
         Add(CParticleManager.getInstance());
         Add(CEnemyBulletManager.getInstance());

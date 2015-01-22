@@ -19,6 +19,24 @@ public class CEnemy extends CSpritedThinker {
     int bonus;
     int score;
 
+    /**
+     * Static factory method, creating new enemies
+     * @param res Spritesheet resource ID
+     * @param x X coordinate of enemy
+     * @param y Y coordinate of enemy
+     * @param vx X velocity
+     * @param vy Y velocity
+     * @param hp Hit points
+     * @param score Score value
+     * @return new enemy reference
+     */
+    public static CEnemy createEnemy(int res, float x, float y,
+                                     float vx, float vy, int bonus, int hp, int score) {
+        CEnemy enemy = new CEnemy(res, x, y, vx, vy, bonus, hp, score);
+        CEnemyManager.getInstance().Add(enemy);
+        return enemy;
+    }
+
     @Override
     public int Think(long delta) {
         if (sprite.get() == null||dead)
@@ -41,7 +59,7 @@ public class CEnemy extends CSpritedThinker {
 
     /**
      * Creating enemy.
-     * You should use {@link CEnemyManager#createEnemy(int, float, float, float, float, int, int, int)}
+     * You should use {@link CEnemy#createEnemy(int, float, float, float, float, int, int, int)}
      * @param res Spritesheet resource ID
      * @param x X coord
      * @param y Y coord
@@ -51,8 +69,8 @@ public class CEnemy extends CSpritedThinker {
      * @param hp hit points
      * @param score score value of enemy
      */
-    public CEnemy(int res, float x, float y, float vx, float vy, int bonus, int hp, int score){
-        CSprite newSprite = CSpriteManager.createSprite(res, x, y);
+    private CEnemy(int res, float x, float y, float vx, float vy, int bonus, int hp, int score){
+        CSprite newSprite = CSprite.createSprite(res, x, y);
         newSprite.setVx(vx);
         newSprite.setVy(vy);
         sprite = new WeakReference<>(newSprite);
@@ -66,7 +84,7 @@ public class CEnemy extends CSpritedThinker {
         if (sprite.get() != null) {
             CParticleManager.createExplosion(getX(), getY(), Color.WHITE);
             if (bonus>0)
-                CBonusManager.createBonus(getX(), getY());
+                CBonus.createBonus(getX(), getY());
             CScoreManager.createScore(getX(),getY(),score);
         }
         super.Die();
@@ -74,7 +92,7 @@ public class CEnemy extends CSpritedThinker {
 
     public CEnemyBullet Shoot(){
         if (!dead) {
-            return CEnemyBulletManager.createBullet(getX(), getY(), 0.2f, 0);
+            return CEnemyBullet.createBullet(getX(), getY(), 0.2f, 0);
         }
         else return null;
     }

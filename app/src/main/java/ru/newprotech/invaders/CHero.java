@@ -73,16 +73,15 @@ public class CHero implements IThinker{
         }
         else
             sprite.stopRotate();
-        sprite.Think(delta);
+        //sprite.Think(delta);
         return 0;
     }
 
     @Override
     public int Collide(RectF rect) {
-        if (!sprite.getRectF().intersect(rect))
+        if (rect == null)
             return 0;
-        else
-            return 1;
+        return sprite.Collide(rect);
     }
 
     @Override

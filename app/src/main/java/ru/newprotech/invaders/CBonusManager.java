@@ -11,11 +11,7 @@ public class CBonusManager extends CThinkerManager{
     }
 
     private CBonusManager() {
+        super();
     }
 
-    public static CBonus createBonus(float x,float y){
-        CBonus bonus = new CBonus(x,y);
-        ourInstance.Add(bonus);
-        return bonus;
-    }
 }
