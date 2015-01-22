@@ -20,7 +20,7 @@ public class CScore implements IThinker {
         Paint alphaPaint = new Paint();
         alphaPaint.setAlpha((int) alpha);
         for (int x = 0; x < value.length(); x++) {
-            font.Draw(canvas,value.charAt(x) - '0',this.x-width+x*8,y,null);
+            font.Draw(canvas,value.charAt(x) - '0',this.x-width+x*8,y,alphaPaint);
         }
     }
 
