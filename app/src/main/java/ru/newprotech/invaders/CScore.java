@@ -50,6 +50,7 @@ public class CScore implements IThinker {
         this.value = score;
         CSpritesheetManager manager = CSpritesheetManager.getInstance();
         this.font = manager.getSheet(font);
+        GameState.getInstance().incScore(score);
     }
 
     public float getX() {

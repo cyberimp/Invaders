@@ -20,6 +20,20 @@ public class CHero implements IThinker{
 
     CWeapon weapon;
 
+    public int getLives() {
+        return lives;
+    }
+
+    public void setLives(int lives) {
+        this.lives = lives;
+    }
+
+    public boolean decLives() {
+        this.lives--;
+        return (this.lives>=0);
+    }
+
+    private int lives;
     long invul=0;
 
     private CHero() {
@@ -87,6 +101,10 @@ public class CHero implements IThinker{
     @Override
     public void Die() {
         CParticleManager.createExplosion(getX(),getY(), Color.WHITE);
+        if (!decLives()){
+            GameState.getInstance().change(IGameState.STATE_GAMEOVER);
+            return;
+        }
         init();
     }
 

@@ -107,6 +107,8 @@ public class StateMain implements IGameState {
         spriteManager.Die();
         gameManager.Clear();
         hero.init();
+        hero.setLives(5);
+        state.setScore(0);
         state.start_thread();
 //        if (thread.getState() == Thread.State.NEW  || thread.getState() == Thread.State.RUNNABLE)
     }

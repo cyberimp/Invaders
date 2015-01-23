@@ -19,6 +19,7 @@ public class CGameManager extends CThinkerManager {
         Add(CEnemyManager.getInstance());
         Add(CHero.getInstance());
         Add(CScoreManager.getInstance());
+        Add(CGuiPanel.getInstance());
     }
 
     @Override

@@ -15,6 +15,8 @@ public class GameState implements IGameState {
     private static IGameState state;
     private static IGameState prev_state=null;
 
+    private int score;
+
     private ScriptThread thread;
 
     public static GameState getInstance() {
@@ -56,13 +58,16 @@ public class GameState implements IGameState {
 
     public void change(int new_state) {
         switch (new_state){
-            case IGameState.STATE_SAME:
+            case STATE_SAME:
                 break;
-            case IGameState.STATE_MAIN:
+            case STATE_MAIN:
                 state = new StateMain();
                 break;
-            case IGameState.STATE_MENU:
+            case STATE_MENU:
                 state = new StateMenu();
+                break;
+            case STATE_GAMEOVER:
+                state = new StateGameover();
                 break;
         }
 
@@ -90,5 +95,17 @@ public class GameState implements IGameState {
         }
         thread.start();
 
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public void incScore(int increment){
+        this.score+=increment;
     }
 }
