@@ -90,9 +90,9 @@ public class CEnemy extends CSpritedThinker {
         super.Die();
     }
 
-    public CEnemyBullet Shoot(){
+    public CEnemyBullet Shoot(float a){
         if (!dead) {
-            return CEnemyBullet.createBullet(getX(), getY(), 0.2f, 0);
+            return CEnemyBullet.createBullet(getX(), getY(), 0.2f, a);
         }
         else return null;
     }
