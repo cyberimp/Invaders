@@ -8,7 +8,7 @@ import java.lang.ref.WeakReference;
 public class CBonus extends CSpritedThinker {
 
     static CBonus createBonus(float x, float y) {
-        CBonus bonus = new CBonus(x, y);
+        CBonus bonus = new CBonus(x, y, R.drawable.power);
         CBonusManager bonusManager = CBonusManager.getInstance();
         bonusManager.Add(bonus);
         return bonus;
@@ -20,7 +20,7 @@ public class CBonus extends CSpritedThinker {
         if (result==0){
             CHero hero = CHero.getInstance();
             if (hero.Collide(this.getRectF())!=0) {
-                hero.PowerUp();
+                pickUp();
                 sprite.get().Die();
                 result = THINKER_DEAD;
             }
@@ -28,8 +28,15 @@ public class CBonus extends CSpritedThinker {
         return result;
     }
 
-    private CBonus(float x, float y){
-        CSprite newSprite = CSprite.createSprite(R.drawable.power, x, y);
+    /**
+     * This method is called on bonus pickup, override it
+     */
+    protected void pickUp(){
+
+    }
+
+    protected CBonus(float x, float y, int res){
+        CSprite newSprite = CSprite.createSprite(res, x, y);
         newSprite.setVx(0);
         newSprite.setVy(.1f);
         sprite = new WeakReference<>(newSprite);
