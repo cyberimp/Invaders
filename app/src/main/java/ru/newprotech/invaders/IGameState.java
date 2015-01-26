@@ -11,11 +11,12 @@ import android.view.MotionEvent;
  * Abstract game state
  */
 interface IGameState {
-    static int STATE_SAME = 0;
-    static int STATE_LOADING = 1;
-    static int STATE_MENU = 2;
-    static int STATE_MAIN = 3;
-    static int STATE_GAMEOVER = 4;
+    final static int STATE_SAME = 0;
+    final static int STATE_LOADING = 1;
+    final static int STATE_MENU = 2;
+    final static int STATE_MAIN = 3;
+    final static int STATE_GAMEOVER = 4;
+    final static int STATE_PAUSE = 5;
 
     /**
      * Draws needed elements on screen (View layer)
@@ -36,4 +37,6 @@ interface IGameState {
      * @return Event was processed
      */
     public boolean TouchHandle(MotionEvent event);
+
+    public int getState();
 }

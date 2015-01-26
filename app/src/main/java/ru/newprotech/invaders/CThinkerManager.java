@@ -46,7 +46,7 @@ public class CThinkerManager implements IThinker{
 
     @Override
     public void Die() {
-
+        Clear();
     }
 
     public synchronized void Clear(){

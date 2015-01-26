@@ -79,39 +79,37 @@ public class StateMain implements IGameState {
     }
 
     @Override
-    public void Draw(Canvas canvas) {
-        CBackground back = CBackground.getInstance();
-        CSpriteManager spriteManager = CSpriteManager.getInstance();
-        CParticleManager particleManager = CParticleManager.getInstance();
-        CHero hero = CHero.getInstance();
-        back.Draw(canvas);
-        spriteManager.Draw(canvas);
-        particleManager.Draw(canvas);
-        hero.Draw(canvas);
+    public int getState() {
+        return STATE_MAIN;
+    }
 
+    @Override
+    public void Draw(Canvas canvas) {
+
+        CGameManager gameManager = CGameManager.getInstance();
+        gameManager.Draw(canvas);
     }
 
     @Override
     public int Think(long delta) {
-        CBackground back = CBackground.getInstance();
         CSpriteManager spriteManager = CSpriteManager.getInstance();
-        CHero hero = CHero.getInstance();
-        CEnemyManager enemyManager = CEnemyManager.getInstance();
-        CHeroBulletManager bulletManager = CHeroBulletManager.getInstance();
-        CBonusManager bonusManager = CBonusManager.getInstance();
-        CParticleManager particleManager = CParticleManager.getInstance();
-        back.Think(delta);
-        hero.Think(delta);
-        bonusManager.Think(delta);
+        CGameManager gameManager = CGameManager.getInstance();
         spriteManager.Think(delta);
-        enemyManager.Think(delta);
-        bulletManager.Think(delta);
-        particleManager.Think(delta);
+        gameManager.Think(delta);
         return 0;
     }
 
     StateMain(){
-       ScriptThread thread = new ScriptThread();
-       thread.start();
+        CHero hero = CHero.getInstance();
+        GameState state = GameState.getInstance();
+        CGameManager gameManager = CGameManager.getInstance();
+        CSpriteManager spriteManager = CSpriteManager.getInstance();
+        spriteManager.Die();
+        gameManager.Clear();
+        hero.init();
+        hero.setLives(5);
+        state.setScore(0);
+        state.start_thread();
+//        if (thread.getState() == Thread.State.NEW  || thread.getState() == Thread.State.RUNNABLE)
     }
 }

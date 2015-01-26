@@ -1,8 +1,12 @@
 package ru.newprotech.invaders;
 
+import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.PointF;
 import android.graphics.RectF;
+import android.view.Display;
+import android.view.WindowManager;
 
 /**
  * Created by kinzoxbeato on 28.12.2014.
@@ -16,6 +20,20 @@ public class CHero implements IThinker{
 
     CWeapon weapon;
 
+    public int getLives() {
+        return lives;
+    }
+
+    public void setLives(int lives) {
+        this.lives = lives;
+    }
+
+    public boolean decLives() {
+        this.lives--;
+        return (this.lives>=0);
+    }
+
+    private int lives;
     long invul=0;
 
     private CHero() {
@@ -33,6 +51,14 @@ public class CHero implements IThinker{
 
     @Override
     public int Think(long delta) {
+        if (invul >0){
+            invul -= delta;
+            if (invul<0) {
+                invul = 0;
+                sprite.stopBlink();
+            }
+        }
+
         CController controller = CController.getInstance();
         if (controller.isMove()){
             PointF point = controller.getMoveHere();
@@ -61,22 +87,25 @@ public class CHero implements IThinker{
         }
         else
             sprite.stopRotate();
-//        sprite.Think(delta);
+        //sprite.Think(delta);
         return 0;
     }
 
     @Override
     public int Collide(RectF rect) {
-        if (!sprite.getRectF().intersect(rect))
+        if (rect == null)
             return 0;
-        else
-            return 1;
+        return sprite.Collide(rect);
     }
 
     @Override
     public void Die() {
-        invul = 1000;
-        sprite.startBlink();
+        CParticleManager.createExplosion(getX(),getY(), Color.WHITE);
+        if (!decLives()){
+            GameState.getInstance().change(IGameState.STATE_GAMEOVER);
+            return;
+        }
+        init();
     }
 
     public void startAnimation(int delay, int start, int end){
@@ -105,7 +134,23 @@ public class CHero implements IThinker{
     }
 
     public void init() {
-        invul = 1000;
+        GameContext gameContext = GameContext.getInstance();
+        WindowManager wm = (WindowManager) gameContext.getSystemService(Context.WINDOW_SERVICE);
+        Display display = wm.getDefaultDisplay();
+        CController controller = CController.getInstance();
+        controller.halt();
+        invul = 3000;
         weapon.init();
+        sprite.setXY(display.getWidth() / 2, display.getHeight() - 64);
+        sprite.setPhi(0);
+        sprite.startBlink();
+    }
+
+    public boolean isInvul() {
+        return (invul>0);
+    }
+
+    public CSprite getSprite() {
+        return sprite;
     }
 }

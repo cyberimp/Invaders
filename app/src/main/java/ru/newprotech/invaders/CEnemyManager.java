@@ -14,21 +14,7 @@ public class CEnemyManager extends CThinkerManager {
         return ourInstance;
     }
 
-    /**
-     * Static factory method, creating new enemies
-     * @param res Spritesheet resource ID
-     * @param x X coordinate of enemy
-     * @param y Y coordinate of enemy
-     * @param vx X velocity
-     * @param vy Y velocity
-     * @return new enemy reference
-     */
-    public static CEnemy createEnemy(int res, float x, float y, float vx, float vy, int bonus){
-        CEnemy enemy = new CEnemy(res, x, y, vx, vy, bonus);
-        ourInstance.Add(enemy);
-        return enemy;
-    }
-
     private CEnemyManager() {
+        super();
     }
 }

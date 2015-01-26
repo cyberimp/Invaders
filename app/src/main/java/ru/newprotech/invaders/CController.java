@@ -77,4 +77,11 @@ public class CController {
     public boolean isShoot() {
         return Shoot;
     }
+
+    public void halt() {
+        setFinger(CController.POINTER_MOVE,-1);
+        setFinger(CController.POINTER_SHOOT,-1);
+        StopMove();
+        StopShoot();
+    }
 }

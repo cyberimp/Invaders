@@ -22,7 +22,7 @@ public class CStar implements IThinker {
 
     @Override
     public int Think(long delta) {
-        y+=(size+1);
+        y+=(size+1)*delta*.05f;
         if (y> CBackground.getRectF().height())
             Die();
         return 0;

@@ -3,6 +3,7 @@ package ru.newprotech.invaders;
 import android.content.Context;
 import android.graphics.RectF;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.view.Display;
 import android.view.WindowManager;
 
@@ -17,8 +18,9 @@ class LoadingTask extends AsyncTask<Float,Integer,Void> {
     @Override
     protected Void doInBackground(Float... params) {
 //        back = new CBackground(R.drawable.nebula,display.getWidth(),display.getHeight());
-        CSpriteManager.init();
-        CHeroBulletManager.init();
+        CSpriteManager spriteManager=CSpriteManager.getInstance();
+        spriteManager.Clear();
+//        CHeroBulletManager.init();
         params[0] = 0.f;
         GameContext gameContext = GameContext.getInstance();
         CBackground back = CBackground.getInstance();
@@ -31,9 +33,13 @@ class LoadingTask extends AsyncTask<Float,Integer,Void> {
         CSpritesheetManager ssManager = CSpritesheetManager.getInstance();
         ssManager.loadSheet(R.drawable.warship, 32, 32);
         ssManager.loadSheet(R.drawable.bullet,8,8);
+        ssManager.loadSheet(R.drawable.lightning,8,8);
+        ssManager.loadSheet(R.drawable.numbers,8,8);
         ssManager.loadSheet(R.drawable.skull,64,64);
+        ssManager.loadSheet(R.drawable.grunt,64,64);
         ssManager.loadSheet(R.drawable.power,16,16);
-        CSprite warship = CSpriteManager.createSprite(R.drawable.warship,160,450);
+        ssManager.loadSheet(R.drawable.gameover,185,187);
+        CSprite warship = CSprite.createSprite(R.drawable.warship,0,0);
         warship.setAnimation(100,0,3);
         CMenu.init(new RectF(20,100,display.getWidth()-20,380),3);
         CMenu.createItem(R.drawable.new_game,IGameState.STATE_MAIN);
