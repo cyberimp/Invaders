@@ -6,6 +6,8 @@ import java.lang.ref.WeakReference;
  * Created by 6003 on 13.01.2015.
  */
 public class CBonus extends CSpritedThinker {
+    public static final int BONUS_POWER = 1;
+    public static final int BONUS_LIFE = 2;
 
     static CBonus createBonus(float x, float y) {
         CBonus bonus = new CBonus(x, y, R.drawable.power);

@@ -14,4 +14,19 @@ public class CBonusManager extends CThinkerManager{
         super();
     }
 
+    public static CBonus createBonus(int kind, float x, float y){
+        CBonus result;
+        switch (kind){
+            case CBonus.BONUS_POWER:
+                result = CPowerBonus.createBonus(x,y);
+                break;
+            case CBonus.BONUS_LIFE:
+                result = CLifeBonus.createBonus(x,y);
+                break;
+            default:
+                result = CBonus.createBonus(x,y);
+        }
+        return result;
+    }
+
 }

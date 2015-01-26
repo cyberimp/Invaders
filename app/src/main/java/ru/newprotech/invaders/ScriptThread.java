@@ -41,7 +41,7 @@ public class ScriptThread extends Thread {
             CEnemy temp;
             //Thread body
             for (int i = 0; i < 5; i++) {
-                temp = CEnemy.createEnemy(R.drawable.skull, rectF.width()+64, 64, -.05f, 0, 1, 10, 200);
+                temp = CEnemy.createEnemy(R.drawable.skull, rectF.width()+64, 64, -.05f, 0, CBonus.BONUS_POWER, 10, 200);
                 a.add(temp);
                 temp = CEnemy.createEnemy(R.drawable.skull, -64, 128, .05f, 0, 0, 10, 100);
                 a.add(temp);
@@ -57,7 +57,7 @@ public class ScriptThread extends Thread {
             timerWait(5000);
             a.clear();
             for (int i = 0; i < 5; i++) {
-                temp = CEnemy.createEnemy(R.drawable.grunt, -64, 64, .05f, 0, 1, 10, 200);
+                temp = CEnemy.createEnemy(R.drawable.grunt, -64, 64, .05f, 0, CBonus.BONUS_POWER, 10, 200);
                 a.add(temp);
                 temp = CEnemy.createEnemy(R.drawable.grunt, rectF.width()+64, 128, -.05f, 0, 0, 10, 100);
                 a.add(temp);
@@ -71,7 +71,7 @@ public class ScriptThread extends Thread {
                     enemy.Shoot(0.f);
             }
             timerWait(5000);
-            temp = CEnemy.createEnemy(R.drawable.skull, rectF.centerX(), -64, 0, 0.02f, 1, 500, 1000);
+            temp = CEnemy.createEnemy(R.drawable.skull, rectF.centerX(), -64, 0, 0.02f, CBonus.BONUS_LIFE, 500, 1000);
             timerWait(6000);
             temp.setVx(0);
             temp.setVy(0);
@@ -88,7 +88,7 @@ public class ScriptThread extends Thread {
             temp.setVx(1);
             timerWait(1000);
             for (int i = 0; i < 7; i++) {
-                temp = CEnemy.createEnemy(R.drawable.skull, rectF.width()+64, 64, -.05f, 0, 1, 10, 200);
+                temp = CEnemy.createEnemy(R.drawable.skull, rectF.width()+64, 64, -.05f, 0, CBonus.BONUS_POWER, 10, 200);
                 a.add(temp);
                 temp = CEnemy.createEnemy(R.drawable.skull, -64, 128, .05f, 0, 0, 10, 100);
                 a.add(temp);

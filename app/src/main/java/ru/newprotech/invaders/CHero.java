@@ -153,4 +153,8 @@ public class CHero implements IThinker{
     public CSprite getSprite() {
         return sprite;
     }
+
+    public void incLives() {
+        this.lives++;
+    }
 }
