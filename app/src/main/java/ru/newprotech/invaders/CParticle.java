@@ -8,13 +8,13 @@ import android.graphics.RectF;
  * Created by 6003 on 13.01.2015.
  */
 public class CParticle implements IThinker {
+
+    private final Paint paint;
+
     @Override
     public void Draw(Canvas canvas) {
-        Paint paint = new Paint();
-        paint.setColor(color);
         paint.setAlpha(alpha);
-        paint.setStrokeWidth(size);
-        canvas.drawPoint(x,y,paint);
+        canvas.drawPoint(x,y, paint);
     }
 
     @Override
@@ -40,8 +40,6 @@ public class CParticle implements IThinker {
     }
 
     private float x,y;
-    private float size;
-    private int color;
     private int alpha;
     private float timer;
     private float vx,vy;
@@ -55,7 +53,8 @@ public class CParticle implements IThinker {
         va = 255/this.timer;
         this.x = x;
         this.y = y;
-        this.size = (float) (Math.random()*4+.1);
-        this.color = color;
+        paint = new Paint();
+        paint.setColor(color);
+        paint.setStrokeWidth((float) (Math.random()*4+.1));
     }
 }

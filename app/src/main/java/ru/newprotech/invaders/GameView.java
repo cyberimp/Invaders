@@ -26,16 +26,16 @@ public class GameView extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        GameState state = GameState.getInstance();
         super.onDraw(canvas);
+        GameState state = GameState.getInstance();
         FpsCounter fps = FpsCounter.getInstance();
-        GlobalTimer timer = GlobalTimer.getInstance();
-        long delta = timer.getDelta();
-        fps.Think(delta);
+//        GlobalTimer timer = GlobalTimer.getInstance();
+//        long delta = timer.getDelta();
+//        fps.Think(delta);
         canvas.drawColor(Color.BLACK);
-        int new_state = state.Think(delta);
-        if (new_state != IGameState.STATE_SAME)
-            state.change(new_state);
+//        int new_state = state.Think(delta);
+//        if (new_state != IGameState.STATE_SAME)
+//            state.change(new_state);
         state.Draw(canvas);
         fps.Draw(canvas);
         invalidate();

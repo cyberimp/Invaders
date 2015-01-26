@@ -24,6 +24,7 @@ public class StateLoad implements IGameState {
     private LoadingTask loadingTask;
     private Float Progress;
     private RectF Screen;
+    private final Paint paint;
 
     @Override
     public boolean TouchHandle(MotionEvent event) {
@@ -38,10 +39,7 @@ public class StateLoad implements IGameState {
 
     @Override
     public void Draw(Canvas canvas) {
-        Paint paint=new Paint();
         paint.setStyle(Paint.Style.STROKE);
-        paint.setTextAlign(Paint.Align.CENTER);
-        paint.setColor(Color.WHITE);
         paint.setAlpha(TextAlpha);
         canvas.drawText("LOADING", Screen.centerX(), Screen.centerY(), paint);
         paint.setAlpha(255);
@@ -85,5 +83,8 @@ public class StateLoad implements IGameState {
         Display display = wm.getDefaultDisplay();
         Screen = new RectF(0,0,display.getWidth(),display.getHeight());
 
+        paint = new Paint();
+        paint.setTextAlign(Paint.Align.CENTER);
+        paint.setColor(Color.WHITE);
     }
 }

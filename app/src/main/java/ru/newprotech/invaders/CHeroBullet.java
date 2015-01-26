@@ -1,5 +1,7 @@
 package ru.newprotech.invaders;
 
+import android.util.Log;
+
 import java.lang.ref.WeakReference;
 
 /**

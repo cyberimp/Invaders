@@ -10,6 +10,7 @@ import android.graphics.RectF;
  */
 public class FpsCounter implements IThinker {
     private static FpsCounter ourInstance = new FpsCounter();
+    private final Paint paint;
 
     public static FpsCounter getInstance() {
         return ourInstance;
@@ -20,14 +21,14 @@ public class FpsCounter implements IThinker {
     private int time_counter=0;
 
     private FpsCounter() {
+        paint = new Paint();
+        paint.setTextAlign(Paint.Align.LEFT);
+        paint.setColor(Color.WHITE);
     }
 
     @Override
     public void Draw(Canvas canvas) {
-        Paint paint= new Paint();
-        paint.setTextAlign(Paint.Align.LEFT);
-        paint.setColor(Color.WHITE);
-        canvas.drawText("fps:"+fps,0,16,paint);
+        canvas.drawText("fps:"+fps,0,16, paint);
     }
 
     @Override

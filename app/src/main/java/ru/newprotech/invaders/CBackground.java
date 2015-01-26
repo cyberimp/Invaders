@@ -15,6 +15,7 @@ public class CBackground implements IThinker {
     private RectF screenSize;
 
     private static CBackground Instance = new CBackground();
+    private RectF screenRect;
 
     public static CBackground getInstance() {
         return Instance;
@@ -33,8 +34,8 @@ public class CBackground implements IThinker {
     public void Draw(Canvas canvas) {
         CStarManager starManager = CStarManager.getInstance();
         screenY = canvas.getHeight();
-        RectF screenRect = new RectF(canvas.getClipBounds());
-        screenRect.offset(0,deltaY);
+        screenRect.set(screenSize);
+        screenRect.offset(0, deltaY);
         canvas.drawBitmap(image, null, screenRect, null);
         screenRect.offset(0, -screenRect.height());
         canvas.drawBitmap(image, null, screenRect, null);
@@ -63,5 +64,9 @@ public class CBackground implements IThinker {
 
     public static RectF getRectF() {
         return Instance.screenSize;
+    }
+
+    public CBackground() {
+        screenRect = new RectF();
     }
 }

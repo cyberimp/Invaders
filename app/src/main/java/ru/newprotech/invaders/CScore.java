@@ -12,15 +12,15 @@ public class CScore implements IThinker {
     private float x,y;
     private float alpha = 255;
     private CSpritesheet font;
+    private final Paint alphaPaint;
 
     @Override
     public void Draw(Canvas canvas) {
         String value = ""+this.value;
         float width = (float)value.length()/2;
-        Paint alphaPaint = new Paint();
         alphaPaint.setAlpha((int) alpha);
         for (int x = 0; x < value.length(); x++) {
-            font.Draw(canvas,value.charAt(x) - '0',this.x-width+x*8,y,alphaPaint);
+            font.Draw(canvas,value.charAt(x) - '0',this.x-width+x*8,y, alphaPaint, 1.f);
         }
     }
 
@@ -51,6 +51,7 @@ public class CScore implements IThinker {
         CSpritesheetManager manager = CSpritesheetManager.getInstance();
         this.font = manager.getSheet(font);
         GameState.getInstance().incScore(score);
+        alphaPaint = new Paint();
     }
 
     public float getX() {

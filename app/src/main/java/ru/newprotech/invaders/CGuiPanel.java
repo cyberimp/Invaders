@@ -11,20 +11,26 @@ import android.util.Log;
  */
 public class CGuiPanel implements IThinker {
     private static CGuiPanel ourInstance = new CGuiPanel();
+    private final Paint paint;
 
     public static CGuiPanel getInstance() {
         return ourInstance;
     }
 
     private CGuiPanel() {
+        paint = new Paint();
+        paint.setColor(Color.WHITE);
     }
 
     @Override
     public void Draw(Canvas canvas) {
-        Paint paint = new Paint();
-        paint.setColor(Color.WHITE);
         GameState state = GameState.getInstance();
         canvas.drawText("score:" + state.getScore(), 0.f, 32.f, paint);
+        CSpritesheet live = CSpritesheetManager.getInstance().getSheet(R.drawable.warship);
+        int livescount = CHero.getInstance().getLives();
+        for (int i = 0; i < livescount; i++) {
+            live.Draw(canvas,1,8.f+16*i,48.f, paint,0.5f);
+        }
     }
 
     @Override

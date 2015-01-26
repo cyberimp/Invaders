@@ -18,7 +18,7 @@ public class StateGameover implements IGameState {
         RectF rectF = CBackground.getRectF();
         back.Draw(canvas);
         CSpritesheetManager.getInstance().getSheet(R.drawable.gameover).Draw(
-                canvas,0,rectF.centerX(),rectF.centerY(),paint);
+                canvas,0,rectF.centerX(),rectF.centerY(),paint, 1.f);
 
     }
 

@@ -20,6 +20,8 @@ public class CSprite implements IThinker {
     private boolean blinking = false;
     float blinkAlpha = 255;
     float alphaSpeed = -1f;
+    private final Paint paint;
+    private RectF rect;
 
     private CSprite(CSpritesheet spritesheet) {
         frame = 0;
@@ -32,6 +34,8 @@ public class CSprite implements IThinker {
         endFrame = 0;
         phi =0;
         vphi=0;
+        paint = new Paint();
+        rect = new RectF(spritesheet.getRectF());
     }
 
     /**
@@ -86,6 +90,7 @@ public class CSprite implements IThinker {
     public void setXY(float x, float y) {
         this.x = x;
         this.y = y;
+        rect.offsetTo(x - rect.width() / 2, y - rect.height() / 2);
     }
 
     public float getVx() {
@@ -97,8 +102,6 @@ public class CSprite implements IThinker {
     }
 
     public RectF getRectF(){
-        RectF rect = spritesheet.getRectF();
-        rect.offsetTo(x-rect.width()/2,y-rect.height()/2);
         return rect;
     }
 
@@ -118,9 +121,8 @@ public class CSprite implements IThinker {
     public void Draw(Canvas canvas) {
         canvas.save();
         canvas.rotate(phi,x,y);
-        Paint paint = new Paint();
         paint.setAlpha((int) blinkAlpha);
-        spritesheet.Draw(canvas,frame,x,y,paint);
+        spritesheet.Draw(canvas,frame,x,y, paint, 1.f);
         canvas.restore();
     }
 
@@ -139,6 +141,7 @@ public class CSprite implements IThinker {
 
         x+=vx*delta;
         y+=vy*delta;
+        rect.offsetTo(x - rect.width() / 2, y - rect.height() / 2);
         phi+=vphi*delta;
         if (phi > 270)
             phi = phi-360.f;
@@ -164,7 +167,9 @@ public class CSprite implements IThinker {
 
     @Override
     public int Collide(RectF rect) {
-        if (rect.intersect(getRectF()))
+//        if (rect == null)
+//            return 0;
+        if (RectF.intersects(rect,getRectF()))
             return 1;
         else
             return 0;

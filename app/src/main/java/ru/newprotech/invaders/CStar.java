@@ -11,13 +11,11 @@ import android.graphics.RectF;
 public class CStar implements IThinker {
 
     float x,y,size;
+    private final Paint paint;
 
     @Override
     public void Draw(Canvas canvas) {
-        Paint paint = new Paint();
-        paint.setStrokeWidth(size);
-        paint.setColor(Color.LTGRAY);
-        canvas.drawPoint(x,y,paint);
+        canvas.drawPoint(x,y, paint);
     }
 
     @Override
@@ -38,6 +36,7 @@ public class CStar implements IThinker {
         x = (float) (Math.random()*CBackground.getRectF().width());
         y = 0;
         size = (float) (4*Math.random()+.1);
+        paint.setStrokeWidth(size);
     }
 
 
@@ -45,5 +44,8 @@ public class CStar implements IThinker {
         x = (float) (Math.random()*CBackground.getRectF().width());
         y = (float) (Math.random()*CBackground.getRectF().height());
         size = (float) (4*Math.random());
+        paint = new Paint();
+        paint.setStrokeWidth(size);
+        paint.setColor(Color.LTGRAY);
     }
 }

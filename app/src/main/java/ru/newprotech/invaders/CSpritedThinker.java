@@ -30,7 +30,8 @@ public class CSpritedThinker implements IThinker {
 
     @Override
     public int Collide(RectF rect) {
-        if (sprite.get()!=null) return sprite.get().Collide(rect);
+        if (sprite.get()!=null)
+            return sprite.get().Collide(rect);
         else
             return 0;
     }

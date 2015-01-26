@@ -8,6 +8,7 @@ import android.view.MenuItem;
 
 public class GameActivity extends ActionBarActivity {
 
+    ThinkerThread thread;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -17,6 +18,8 @@ public class GameActivity extends ActionBarActivity {
         setContentView(gameView);
         GameState state = GameState.getInstance();
         state.init();
+        thread = new ThinkerThread();
+        thread.start();
     }
 
     @Override
@@ -44,6 +47,7 @@ public class GameActivity extends ActionBarActivity {
         super.onPause();
         GameState state = GameState.getInstance();
         state.pause();
+        thread.setRunning(false);
     }
 
     @Override
@@ -51,6 +55,10 @@ public class GameActivity extends ActionBarActivity {
         super.onResume();
         GameState state = GameState.getInstance();
         state.resume();
+        if (!thread.isRunning()) {
+            thread.setRunning(true);
+            thread.unlock();
+        }
     }
 
     @Override
