@@ -21,15 +21,12 @@ public class CMenu {
     }
 
     public synchronized void draw(Canvas canvas){
-        for (int i = 0; i < menuItems.size(); i++) {
-            CMenuItem menuItem =  menuItems.elementAt(i);
+        for (CMenuItem menuItem: menuItems)
             menuItem.draw(canvas);
-        }
     }
 
     public synchronized int touch(float x, float y){
-        for (int i = 0; i < menuItems.size(); i++) {
-            CMenuItem menuItem =  menuItems.elementAt(i);
+        for (CMenuItem menuItem: menuItems) {
             if (menuItem.check(x, y))
                 return menuItem.getNextState();
         }
