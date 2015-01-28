@@ -14,6 +14,12 @@ public class CScore implements IThinker {
     private CSpritesheet font;
     private final Paint alphaPaint;
 
+    public static CScore createScore(float x, float y, int score) {
+        CScore newscore =  new CScore(x, y, score, R.drawable.numbers);
+        CScoreManager.getInstance().Add(newscore);
+        return newscore;
+    }
+
     @Override
     public void Draw(Canvas canvas) {
         String value = ""+this.value;
@@ -44,7 +50,7 @@ public class CScore implements IThinker {
 
     }
 
-    public CScore(float x, float y, int score, int font){
+    private CScore(float x, float y, int score, int font){
         this.x=x;
         this.y=y;
         this.value = score;

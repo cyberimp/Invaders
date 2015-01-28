@@ -86,7 +86,7 @@ public class CEnemy extends CSpritedThinker {
             CParticleManager.createExplosion(getX(), getY(), Color.WHITE);
             if (bonus>0)
                 CBonusManager.createBonus(bonus, getX(), getY());
-            CScoreManager.createScore(getX(),getY(),score);
+            CScore.createScore(getX(),getY(),score);
         }
         super.Die();
     }

@@ -21,7 +21,6 @@ public class GameView extends View {
     public boolean onTouchEvent(@NonNull MotionEvent event) {
         GameState state = GameState.getInstance();
         return state.TouchHandle(event);
-//        return super.onTouchEvent(event);
     }
 
     @Override
@@ -29,13 +28,7 @@ public class GameView extends View {
         super.onDraw(canvas);
         GameState state = GameState.getInstance();
         FpsCounter fps = FpsCounter.getInstance();
-//        GlobalTimer timer = GlobalTimer.getInstance();
-//        long delta = timer.getDelta();
-//        fps.Think(delta);
         canvas.drawColor(Color.BLACK);
-//        int new_state = state.Think(delta);
-//        if (new_state != IGameState.STATE_SAME)
-//            state.change(new_state);
         state.Draw(canvas);
         fps.Draw(canvas);
         invalidate();
