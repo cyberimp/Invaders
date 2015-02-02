@@ -1,10 +1,10 @@
 package ru.newprotech.invaders;
 
 import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.media.SoundPool;
 
 import java.util.HashMap;
-import java.util.Objects;
 
 
 /**
@@ -13,6 +13,7 @@ import java.util.Objects;
 public class CMusicManager {
     private static CMusicManager instance = new CMusicManager();
     private SoundPool soundPool;
+    private MediaPlayer mediaPlayer;
     private HashMap<Integer,Integer> collection;
     private final Object loadMonitor;
 
@@ -50,12 +51,20 @@ public class CMusicManager {
         }
     }
 
+    public synchronized void loadMusic(int res){
+        mediaPlayer = MediaPlayer.create(GameContext.getContext(),res);
+        mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+        mediaPlayer.setLooping(true);
+    }
+
     public synchronized void pauseAll(){
         soundPool.autoPause();
+        mediaPlayer.pause();
     }
 
     public synchronized void resumeAll(){
         soundPool.autoResume();
+        mediaPlayer.start();
     }
 
 }
