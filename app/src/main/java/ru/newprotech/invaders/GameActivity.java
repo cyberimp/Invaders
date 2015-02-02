@@ -1,5 +1,6 @@
 package ru.newprotech.invaders;
 
+import android.media.AudioManager;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -11,6 +12,7 @@ public class GameActivity extends ActionBarActivity {
     ThinkerThread thread;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setVolumeControlStream(AudioManager.STREAM_MUSIC);
         super.onCreate(savedInstanceState);
         GameContext cont = GameContext.getInstance();
         cont.setCont(this.getApplicationContext());

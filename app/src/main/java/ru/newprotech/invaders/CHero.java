@@ -101,6 +101,7 @@ public class CHero implements IThinker{
     @Override
     public void Die() {
         CParticleManager.createExplosion(getX(),getY(), Color.WHITE);
+        CMusicManager.getInstance().playSound(R.raw.explode);
         if (!decLives()){
             GameState.getInstance().change(IGameState.STATE_GAMEOVER);
             return;

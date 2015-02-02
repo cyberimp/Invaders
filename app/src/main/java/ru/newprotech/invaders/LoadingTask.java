@@ -20,8 +20,15 @@ class LoadingTask extends AsyncTask<Float,Integer,Void> {
 //        back = new CBackground(R.drawable.nebula,display.getWidth(),display.getHeight());
         CSpriteManager spriteManager=CSpriteManager.getInstance();
         spriteManager.Clear();
+        CMusicManager musicManager = CMusicManager.getInstance();
 //        CHeroBulletManager.init();
         params[0] = 0.f;
+        try {
+            musicManager.loadSound(R.raw.bullet);
+            musicManager.loadSound(R.raw.explode);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         GameContext gameContext = GameContext.getInstance();
         CBackground back = CBackground.getInstance();
         WindowManager wm = (WindowManager) gameContext.getSystemService(Context.WINDOW_SERVICE);

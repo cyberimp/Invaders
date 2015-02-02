@@ -87,12 +87,14 @@ public class CEnemy extends CSpritedThinker {
             if (bonus>0)
                 CBonusManager.createBonus(bonus, getX(), getY());
             CScore.createScore(getX(),getY(),score);
+            CMusicManager.getInstance().playSound(R.raw.explode);
         }
         super.Die();
     }
 
     public CEnemyBullet Shoot(float a){
         if (!dead) {
+            CMusicManager.getInstance().playSound(R.raw.bullet);
             return CEnemyBullet.createBullet(getX(), getY(), 0.2f, a);
         }
         else return null;
