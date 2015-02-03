@@ -78,6 +78,7 @@ public class GameState implements IGameState {
         state = new StatePause();
         GlobalTimer timer = GlobalTimer.getInstance();
         timer.stop();
+        CMusicManager.getInstance().pauseAll();
     }
 
     public void resume(){
@@ -85,6 +86,7 @@ public class GameState implements IGameState {
             state = prev_state;
         GlobalTimer timer = GlobalTimer.getInstance();
         timer.start();
+        CMusicManager.getInstance().resumeAll();
     }
 
     public void start_thread(){
@@ -95,6 +97,10 @@ public class GameState implements IGameState {
         }
         thread.start();
 
+    }
+
+    public void stop_thread(){
+        thread.interrupt();
     }
 
     public int getScore() {

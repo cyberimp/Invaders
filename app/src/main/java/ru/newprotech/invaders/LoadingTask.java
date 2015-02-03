@@ -26,6 +26,7 @@ class LoadingTask extends AsyncTask<Float,Integer,Void> {
         try {
             musicManager.loadSound(R.raw.bullet);
             musicManager.loadSound(R.raw.explode);
+            musicManager.loadMusic(R.raw.dubmood_hybrid_funky_stars);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

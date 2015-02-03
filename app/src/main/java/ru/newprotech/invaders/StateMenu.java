@@ -41,4 +41,8 @@ public class StateMenu implements IGameState {
     public int getState() {
         return STATE_MENU;
     }
+
+    public StateMenu() {
+        CMusicManager.getInstance().stopMusic();
+    }
 }

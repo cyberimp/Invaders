@@ -36,4 +36,8 @@ public class StateGameover implements IGameState {
     public int getState() {
         return STATE_GAMEOVER;
     }
+
+    public StateGameover() {
+        CMusicManager.getInstance().stopMusic();
+    }
 }

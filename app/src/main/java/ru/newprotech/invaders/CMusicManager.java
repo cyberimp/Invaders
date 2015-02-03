@@ -16,13 +16,14 @@ public class CMusicManager {
     private MediaPlayer mediaPlayer;
     private HashMap<Integer,Integer> collection;
     private final Object loadMonitor;
+    private boolean musicPlaying = false;
 
     public static CMusicManager getInstance() {
         return instance;
     }
 
     CMusicManager(){
-        soundPool = new SoundPool(16, AudioManager.STREAM_MUSIC,0);
+        soundPool = new SoundPool(1, AudioManager.STREAM_MUSIC,0);
         collection = new HashMap<>();
         loadMonitor = new Object();
         soundPool.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
@@ -45,6 +46,19 @@ public class CMusicManager {
 
     }
 
+    public synchronized void playMusic(){
+        musicPlaying = true;
+        mediaPlayer.start();
+    }
+
+    public synchronized void stopMusic(){
+        if (musicPlaying) {
+            mediaPlayer.pause();
+            mediaPlayer.seekTo(0);
+        }
+        musicPlaying = false;
+    }
+
     public synchronized void playSound(int res){
         if (collection.containsKey(res)){
             soundPool.play(collection.get(res),1.f,1.f,1,0,1.f);
@@ -59,12 +73,14 @@ public class CMusicManager {
 
     public synchronized void pauseAll(){
         soundPool.autoPause();
-        mediaPlayer.pause();
+        if (musicPlaying)
+            mediaPlayer.pause();
     }
 
     public synchronized void resumeAll(){
         soundPool.autoResume();
-        mediaPlayer.start();
+        if (musicPlaying)
+            mediaPlayer.start();
     }
 
 }
