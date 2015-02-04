@@ -15,6 +15,8 @@ public class GameState implements IGameState {
     private static IGameState state;
     private static IGameState prev_state=null;
 
+    private float loadingProgress=0.f;
+
     private int score;
 
     private ScriptThread thread;
@@ -56,7 +58,13 @@ public class GameState implements IGameState {
         return state.getState();
     }
 
+    @Override
+    public void endState() {
+
+    }
+
     public void change(int new_state) {
+        state.endState();
         switch (new_state){
             case STATE_SAME:
                 break;
@@ -113,5 +121,13 @@ public class GameState implements IGameState {
 
     public void incScore(int increment){
         this.score+=increment;
+    }
+
+    public float getProgress() {
+        return loadingProgress;
+    }
+
+    public void setProgress(float loadingProgress) {
+        this.loadingProgress = loadingProgress;
     }
 }

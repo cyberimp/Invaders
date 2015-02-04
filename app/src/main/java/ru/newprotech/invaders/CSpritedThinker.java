@@ -41,6 +41,7 @@ public class CSpritedThinker implements IThinker {
         dead = true;
         if (sprite.get()!=null) {
             sprite.get().Die();
+            sprite.clear();
         }
 
     }

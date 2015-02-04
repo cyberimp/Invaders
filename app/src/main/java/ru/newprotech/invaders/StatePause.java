@@ -27,4 +27,9 @@ public class StatePause implements IGameState {
     public int getState() {
         return STATE_PAUSE;
     }
+
+    @Override
+    public void endState() {
+
+    }
 }

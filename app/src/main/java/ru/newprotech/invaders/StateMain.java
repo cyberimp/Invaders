@@ -84,6 +84,12 @@ public class StateMain implements IGameState {
     }
 
     @Override
+    public void endState() {
+        CMusicManager.getInstance().stopMusic();
+        GameState.getInstance().stop_thread();
+    }
+
+    @Override
     public void Draw(Canvas canvas) {
 
         CGameManager gameManager = CGameManager.getInstance();

@@ -23,9 +23,12 @@ public class CMusicManager {
     }
 
     CMusicManager(){
+        loadMonitor = new Object();
+    }
+
+    public void init(){
         soundPool = new SoundPool(1, AudioManager.STREAM_MUSIC,0);
         collection = new HashMap<>();
-        loadMonitor = new Object();
         soundPool.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
             @Override
             public void onLoadComplete(SoundPool soundPool, int mySoundId, int status) {
@@ -78,7 +81,8 @@ public class CMusicManager {
     }
 
     public synchronized void resumeAll(){
-        soundPool.autoResume();
+        if (soundPool!=null)
+            soundPool.autoResume();
         if (musicPlaying)
             mediaPlayer.start();
     }

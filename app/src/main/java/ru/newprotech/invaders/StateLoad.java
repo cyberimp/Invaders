@@ -38,7 +38,13 @@ public class StateLoad implements IGameState {
     }
 
     @Override
+    public void endState() {
+
+    }
+
+    @Override
     public void Draw(Canvas canvas) {
+        float percent = GameState.getInstance().getProgress();
         paint.setStyle(Paint.Style.STROKE);
         paint.setAlpha(TextAlpha);
         paint.setStrokeWidth(0);
@@ -50,7 +56,7 @@ public class StateLoad implements IGameState {
         paint.setStyle(Paint.Style.FILL_AND_STROKE);
 //        canvas.drawRect(105,275,235+(235.f-105.f)/100.f*Progress,285,paint);
         canvas.drawRect(Screen.centerX()-65, Screen.centerY()+37,
-                Screen.centerX()+130.f/100.f*Progress,
+                Screen.centerX()-65.f+130.f/100.f*percent,
                 Screen.centerY()+47, paint);
 
 

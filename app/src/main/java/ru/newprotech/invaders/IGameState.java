@@ -39,4 +39,5 @@ interface IGameState {
     public boolean TouchHandle(MotionEvent event);
 
     public int getState();
+    public void endState();
 }

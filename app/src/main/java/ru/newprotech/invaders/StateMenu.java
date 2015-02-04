@@ -42,7 +42,12 @@ public class StateMenu implements IGameState {
         return STATE_MENU;
     }
 
+    @Override
+    public void endState() {
+
+    }
+
     public StateMenu() {
-        CMusicManager.getInstance().stopMusic();
+//        CMusicManager.getInstance().stopMusic();
     }
 }
