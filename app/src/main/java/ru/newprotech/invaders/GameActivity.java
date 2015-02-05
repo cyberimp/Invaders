@@ -9,7 +9,7 @@ import android.view.MenuItem;
 
 public class GameActivity extends ActionBarActivity {
 
-    ThinkerThread thread;
+//    ThinkerThread thread;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
@@ -20,8 +20,8 @@ public class GameActivity extends ActionBarActivity {
         setContentView(gameView);
         GameState state = GameState.getInstance();
         state.init();
-        thread = new ThinkerThread();
-        thread.start();
+ //       thread = new ThinkerThread();
+//        thread.start();
     }
 
     @Override
@@ -49,7 +49,7 @@ public class GameActivity extends ActionBarActivity {
         super.onPause();
         GameState state = GameState.getInstance();
         state.pause();
-        thread.setRunning(false);
+//        thread.setRunning(false);
     }
 
     @Override
@@ -57,10 +57,10 @@ public class GameActivity extends ActionBarActivity {
         super.onResume();
         GameState state = GameState.getInstance();
         state.resume();
-        if (!thread.isRunning()) {
-            thread.setRunning(true);
-            thread.unlock();
-        }
+ //       if (!thread.isRunning()) {
+//            thread.setRunning(true);
+//            thread.unlock();
+//        }
     }
 
     @Override
