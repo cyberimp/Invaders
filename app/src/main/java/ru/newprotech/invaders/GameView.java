@@ -20,6 +20,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         gameContext.setCont(context);
         getHolder().addCallback(this);
         setFocusable(true);
+        thread = new ThinkerThread();
     }
 
     @Override
@@ -30,18 +31,41 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        GameState state = GameState.getInstance();
-        FpsCounter fps = FpsCounter.getInstance();
-        canvas.drawColor(Color.BLACK);
-        state.Draw(canvas);
-        fps.Draw(canvas);
+//        super.onDraw(canvas);
+//        GameState state = GameState.getInstance();
+//        FpsCounter fps = FpsCounter.getInstance();
+//        canvas.drawColor(Color.BLACK);
+//        state.Draw(canvas);
+//        fps.Draw(canvas);
 //        invalidate();
     }
 
     @Override
+    protected void onWindowVisibilityChanged(int visibility) {
+        super.onWindowVisibilityChanged(visibility);
+        switch (visibility){
+            case GONE:
+                GameState.getInstance().stop_thread();
+                thread.interrupt();
+                break;
+            case INVISIBLE:
+                GameState.getInstance().pause();
+                thread.setRunning(false);
+                break;
+            case VISIBLE:
+                GameState.getInstance().resume();
+                if (!thread.isRunning()) {
+                    thread.setRunning(true);
+                    thread.unlock();
+                }
+        }
+    }
+
+    @Override
     public void surfaceCreated(SurfaceHolder holder) {
-        thread = new ThinkerThread(holder);
+        GameState.getInstance().init();
+
+        thread.setSurfaceHolder(holder);
         thread.start();
     }
 
@@ -52,6 +76,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
     @Override
     public void surfaceDestroyed(SurfaceHolder holder) {
+        thread.interrupt();
 
     }
 

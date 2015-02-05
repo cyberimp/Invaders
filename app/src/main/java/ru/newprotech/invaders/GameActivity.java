@@ -18,8 +18,8 @@ public class GameActivity extends ActionBarActivity {
         cont.setCont(this.getApplicationContext());
         GameView gameView = new GameView(this);
         setContentView(gameView);
-        GameState state = GameState.getInstance();
-        state.init();
+//        GameState state = GameState.getInstance();
+//        state.init();
  //       thread = new ThinkerThread();
 //        thread.start();
     }
@@ -47,16 +47,16 @@ public class GameActivity extends ActionBarActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        GameState state = GameState.getInstance();
-        state.pause();
+//        GameState state = GameState.getInstance();
+//        state.pause();
 //        thread.setRunning(false);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        GameState state = GameState.getInstance();
-        state.resume();
+//        GameState state = GameState.getInstance();
+//        state.resume();
  //       if (!thread.isRunning()) {
 //            thread.setRunning(true);
 //            thread.unlock();

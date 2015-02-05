@@ -12,13 +12,15 @@ import java.util.Objects;
 public class ThinkerThread extends Thread {
     private boolean running = false;
 
-    public ThinkerThread(SurfaceHolder surfaceHolder) {
-        this.surfaceHolder = surfaceHolder;
+    public ThinkerThread() {
         this.running = true;
     }
 
     private SurfaceHolder surfaceHolder;
 
+    public void setSurfaceHolder(SurfaceHolder surfaceHolder) {
+        this.surfaceHolder = surfaceHolder;
+    }
 
     private final Object monitor = new Object();
     public boolean isRunning() {
@@ -69,6 +71,7 @@ public class ThinkerThread extends Thread {
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
+            CMusicManager.getInstance().release();
         }
     }
 

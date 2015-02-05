@@ -87,4 +87,8 @@ public class CMusicManager {
             mediaPlayer.start();
     }
 
+    public void release() {
+        mediaPlayer.release();
+        soundPool.release();
+    }
 }
