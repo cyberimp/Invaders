@@ -52,6 +52,7 @@ public class ThinkerThread extends Thread {
                 int new_state = state.Think(delta);
                 if (new_state != IGameState.STATE_SAME)
                     state.change(new_state);
+                if (surfaceHolder!= null)
                 try {
                     canvas = surfaceHolder.lockCanvas(null);
                     synchronized (surfaceHolder){

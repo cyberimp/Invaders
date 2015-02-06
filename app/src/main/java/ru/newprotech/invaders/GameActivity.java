@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Window;
+import android.view.WindowManager;
 
 
 public class GameActivity extends ActionBarActivity {
@@ -17,6 +19,8 @@ public class GameActivity extends ActionBarActivity {
         GameContext cont = GameContext.getInstance();
         cont.setCont(this.getApplicationContext());
         GameView gameView = new GameView(this);
+        supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(gameView);
 //        GameState state = GameState.getInstance();
 //        state.init();
