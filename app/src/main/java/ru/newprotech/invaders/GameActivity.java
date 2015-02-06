@@ -14,13 +14,13 @@ public class GameActivity extends ActionBarActivity {
 //    ThinkerThread thread;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
         super.onCreate(savedInstanceState);
         GameContext cont = GameContext.getInstance();
         cont.setCont(this.getApplicationContext());
         GameView gameView = new GameView(this);
-        supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(gameView);
 //        GameState state = GameState.getInstance();
 //        state.init();
