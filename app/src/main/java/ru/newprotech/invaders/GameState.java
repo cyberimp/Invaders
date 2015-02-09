@@ -97,6 +97,11 @@ public class GameState implements IGameState {
         CMusicManager.getInstance().resumeAll();
     }
 
+    public void quit(){
+        stop_thread();
+        CMusicManager.getInstance().release();
+    }
+
     public void start_thread(){
         if (thread.getState()!= Thread.State.NEW)
         {

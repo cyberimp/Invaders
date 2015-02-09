@@ -44,6 +44,7 @@ public class GameActivity extends ActionBarActivity {
     @Override
     protected void onStop() {
         super.onStop();
+        GameState.getInstance().quit();
 //        ScriptThread thread = ScriptThread.getInstance();
 //        thread.interrupt();
     }
@@ -51,6 +52,7 @@ public class GameActivity extends ActionBarActivity {
     @Override
     protected void onPause() {
         super.onPause();
+        GameState.getInstance().pause();
 //        GameState state = GameState.getInstance();
 //        state.pause();
 //        thread.setRunning(false);
@@ -59,8 +61,7 @@ public class GameActivity extends ActionBarActivity {
     @Override
     protected void onResume() {
         super.onResume();
-//        GameState state = GameState.getInstance();
-//        state.resume();
+        GameState.getInstance().resume();
  //       if (!thread.isRunning()) {
 //            thread.setRunning(true);
 //            thread.unlock();

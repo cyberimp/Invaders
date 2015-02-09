@@ -4,7 +4,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.view.SurfaceHolder;
 
-import java.util.Objects;
 
 /**
  * Created by 6003 on 26.01.2015.
@@ -72,7 +71,7 @@ public class ThinkerThread extends Thread {
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
-            CMusicManager.getInstance().release();
+
         }
     }
 
